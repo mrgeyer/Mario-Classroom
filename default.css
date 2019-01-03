@@ -1,0 +1,10 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  font-size: 32px;    
+}
+
+pickButt {
+  border: 0px;
+}
