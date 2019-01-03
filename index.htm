@@ -1,0 +1,27 @@
+<head>
+<link rel="stylesheet" type="text/css" href="default.css">
+</head>
+<body>
+
+<p id="buttons"></p>
+
+<p id="butt2"></p>
+
+<p>
+  
+  <input type="file" id="fileToLoad"> 
+ <button onClick='loadSpreadSheet()'>Import</button> 
+  <br \>
+  
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='none'">Hide</button>
+
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='block'">Show</button>
+  
+<button onClick='exportData()'>Spreadsheet Log</button>
+<button class="CTbutton" onclick="saveTextAsFile()">Save Log</button>
+
+</p>
+
+<textarea id="inputTextToSave" style="width:700px;height:100px"></textarea>
+
+</body>
