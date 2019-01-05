@@ -91,18 +91,18 @@ function start() {
 }
 
 function loadClass(n) {
-  let output = "";
+  let output = "<table>";
   
   for (let i = 0; i < classes[n].students.length; i++) {
     let student = classes[n].students[i];
-    output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/powerUps/";
+    output += "<tr><td><img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/powerUps/";
     output += student.powerUp + ".png' height="+ height + "> ";
     output += student.name + " x " + student.lives;
-    output += " $";
+    output += " </td><td> $";
     if (student.coins < 10){
       output += " ";
     }
-    output += student.coins;
+    output += student.coins + " </td><td>";
     
     if (student.lives < 1) {
       output += " <button class='picButt' onClick='gameOver(" + n + ", " + i + ")'>";
@@ -121,16 +121,16 @@ function loadClass(n) {
       output += " <button class='picButt' onClick='enemy(" + n + ", "  + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/buttons/goomba.png' height=";
       output += height + "></button> ";
+      
+      output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/redTurtle.png' height=" + height + "></button>  ";
 
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/greenTurtle.png' height=" + height + "></button>  ";
 
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 3)'>";
-      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
-      output += "Classroom/master/images/buttons/redTurtle.png' height=" + height + "></button>  ";
-
-      output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/beetle.png' height=" + height + "></button>  ";    
 
@@ -142,7 +142,7 @@ function loadClass(n) {
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/buttons/water.png' height=";
       output += height + "></button>  ";
     }
-    output += "<br />";
+    output += "</td></tr>";
   }
   buttons.innerHTML = output;
 }
@@ -186,8 +186,8 @@ function item(p,s){
     student.lives += 1;
     student.coins = student.coins%100;
   }
-  student.comments += student.name + " was participating in class. ";
-  student.comments += "The teacher recognized the student's contribution to class. ";
+  // student.comments += student.name + " was participating in class. ";
+  // student.comments += "The teacher recognized the student's contribution to class. ";
   loadClass(p);
 }
 
@@ -215,7 +215,7 @@ function enemy(p,s,e) {
     case 2:
       student.comments += student.firstName + " was off task and refused to participate in class. ";
       student.comments += "The teacher gave the student a direct warning. ";
-      student.reasons.push(9);
+      student.reasons.push(10); // failure to participate in class.
       break;
     case 3:
       student.comments += student.firstName + " was talking about an unrelated topic during the lesson ";
@@ -227,20 +227,23 @@ function enemy(p,s,e) {
     case 4:
       student.tardies += 1;
       student.comments += student.firstName + " was tardy for the " + student.tardies;
-      if (student.tardies === 1) {
-        student.comments += "st ";
+      if (student.tardies == 1) {
+        student.comments += "st";
       }
-      if (student.tardies ===2) {
-        student.comments += "nd ";
+      if (student.tardies == 2) {
+        student.comments += "nd";
       }
-      if (student.tardies === 3){
-        student.comments += "rd ";
+      if (student.tardies == 3){
+        student.comments += "rd";
       }
       if (student.tardies > 3){
-        student.comments += "th ";
+        student.comments += "th";
       }
-      student.comments += "time today. ";
+      student.comments += " time today. ";
       student.comments += " The teacher gave the student a direct warning. ";
+      if (student.tardies > 1) {
+        student.reasons.push(9); // excessive tardies
+      }
       break;
     default:
       student.comments += "The teacher gave the student a direct warning. ";
@@ -395,7 +398,7 @@ function gameOver(p,s) {
   
     output += ",";
     if (student.reasons.includes(1)) {
-      output += "[√] Cheating ";
+      output += "[X] Cheating ";
     }
     output += ",,,,,,," + student.comments.substr(600,100) + ",\n";
   
@@ -569,9 +572,9 @@ function loadSpreadSheet() {
         name: spShAr[i][1],
         firstName: spShAr[i][2],
         lastName: spShAr[i][3],
-        powerUp: spShAr[i][4],
-        lives: spShAr[i][5],
-        coins: spShAr[i][6],
+        powerUp: parseInt(spShAr[i][4]),
+        lives: parseInt(spShAr[i][5]),
+        coins: parseInt(spShAr[i][6]),
         calculatorNumber: spShAr[i][7],
         lastItem: "block",
         sex: spShAr[i][8],
@@ -596,8 +599,9 @@ function loadSpreadSheet() {
          }
        }
     }
-    console.log(classes);
     start();
+    console.log(classes);
+    
   };
 	fileReader.readAsText(fileToLoad, "UTF-8");
 	
