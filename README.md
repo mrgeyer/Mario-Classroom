@@ -1,4 +1,10 @@
-## Welcome to GitHub Pages
+# Getting Started
+
+## Create a CSV file
+
+Use the following headers: Period,	 Student,	 First Name,	 Last Name,	 Power Up,	 lives,	 coins,	 calculatorNumber,	 sex,	 grade,	  incidents,	 race,	 tardies,	 special programs,	  reasons,	 comments
+
+You only need to fill out period, student first name, last name, sex, grade, and race. You can leave 
 
 You can use the [editor on GitHub](https://github.com/mrgeyer/Mario-Classroom/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
