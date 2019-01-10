@@ -90,8 +90,8 @@ butt2 = document.getElementById("butt2");
 function start() {
   let output = "";
   for (let i = 0; i < classes.length; i++) {
-    output +=
-      "<button onClick='loadClass(" + i + ")'> " + classes[i].period + " </button>";
+    output += "<button onClick='loadClass(" + i + ")'> " + classes[i].period + " </button>";
+   output += "<button onClick='couch(" + i + ")'> C" + classes[i].period + " </button>";
   }
   butt2.innerHTML = output;
 }
@@ -646,14 +646,14 @@ function loadSpreadSheet() {
         grade: spShAr[i][9],
         incidents: spShAr[i][10], 
         race: spShAr[i][11],
-        tardies: spShAr[i][12],
+        tardies: parseInt(spShAr[i][12]),
         specialPrograms: spShAr[i][12].split(";"),
         reasons: [],
         otherReasons: "",
         comments: ""
       };
-      if (student.lives < 2 || isNaN(student.lives)) {
-        student.lives = 2;
+      if (student.lives < 3 || isNaN(student.lives)) {
+        student.lives = 3;
       }
       if (student.powerUp < 1 || isNaN(student.powerUp)) {
         student.powerUp = 1;
@@ -673,6 +673,26 @@ function loadSpreadSheet() {
   };
 	fileReader.readAsText(fileToLoad, "UTF-8");
 	
+}
+
+function randomElementOf(theArray) {
+  return theArray[Math.floor(Math.random() * theArray.length)];
+}
+
+function couch(p) {
+  couchRoster = [];
+  let personOnCouch = "No one";
+  for (let i = 0; i < classes[p].students.length; i++) {
+    let student = classes[p].students[i];
+    if (student.powerUp == 3){
+      couchRoster.push(student.name);
+    }
+  }
+  if (couchRoster.length > 0) {
+   personOnCouch = randomElementOf(couchRoster);
+  }
+  
+  document.getElementById("couch").innerHTML = personOnCouch + " is on the couch today.";
 }
 
 start();
