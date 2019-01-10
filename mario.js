@@ -1,3 +1,11 @@
+emailaddresses =  "scott.geyer@brownfieldisd.net;";
+emailaddresses += "bhsdiscipline@brownfieldisd.net;";
+emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
+subject = "Student sent to ISS. Preliminary Discplinary Log File attached. Official form pending.";
+body = "The attached csv file is not the offical form. The official form will be sent as soon as I ";
+body += "am able to.";
+body += "\n\n-Mr. Geyer";
+
 classes = [
   {
     period: 1,
@@ -67,8 +75,6 @@ classes = [
 ];
 
 height = 64;
-var d = Date();
-var dv = d.valueOf();
 
 var dieSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_mariodie.wav');
 var powerUpSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_powerup.wav');
@@ -109,7 +115,10 @@ function loadClass(n) {
       output += " GAME OVER</button> ";
 
      output += " <button class='picButt' onClick='downloadReport(" + n + ", " + i + ")'>";
-      output += " DR</button> ";
+     output += " DR</button> ";
+      
+     output += ' <a href="mailto:' + emailaddresses + '?subject=' + subject + '&body=' + body + '">';
+     output += " SEND</button> ";
       
       
     } else {
@@ -119,8 +128,9 @@ function loadClass(n) {
        output += student.lastItem + ".png' height="+ height + "></button> ";
 
       output += " <button class='picButt' onClick='enemy(" + n + ", "  + i + ", 1)'>";
-      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/buttons/goomba.png' height=";
-      output += height + "></button> ";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/goomba.png' height=";
+      output += height + 'alt="No materials."></button> ';
       
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
@@ -135,12 +145,30 @@ function loadClass(n) {
       output += "Classroom/master/images/buttons/beetle.png' height=" + height + "></button>  ";    
 
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 1)'>";
-      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/buttons/lava.png' height=";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/lava.png' height=";
       output += height + "></button>  ";
-
+/* 
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 2)'>";
-      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/buttons/water.png' height=";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/water.png' height=";
       output += height + "></button>  ";
+*/    
+      output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 1)'>";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/reset.jpg' height=";
+      output += height + "></button>  ";
+      
+      output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 2)'>";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/power.jpg' height=";
+      output += height + "></button>  ";
+      
+      output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 3)'>";
+      output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
+      output += "Classroom/master/images/buttons/SNESreset.jpg' height=";
+      output += height + "></button>  ";
+      
     }
     output += "</td></tr>";
   }
@@ -209,8 +237,10 @@ function enemy(p,s,e) {
   switch (e) {
     case 1:
       student.comments += student.firstName + " did not have the proper materials for the lesson. ";
+      student.comments += student.firstName + " was off task and refused to participate in class. ";
       student.comments += " The teacher gave the student a direct warning. ";
-      student.reasons.push(3);
+      student.reasons.push(10); // failure to participate in class.
+      student.reasons.push(3); // not have proper materials
       break;
     case 2:
       student.comments += student.firstName + " was off task and refused to participate in class. ";
@@ -218,8 +248,7 @@ function enemy(p,s,e) {
       student.reasons.push(10); // failure to participate in class.
       break;
     case 3:
-      student.comments += student.firstName + " was talking about an unrelated topic during the lesson ";
-      student.comments += "and disrupting class. ";
+      student.comments += student.firstName + " was talking about an unrelated topic during the lesson. ";
       student.comments += "The teacher gave the student a direct warning. ";
       student.reasons.push(8); // Excessive talking
       student.reasons.push(2); // Class disruption
@@ -264,19 +293,53 @@ function pit(p,s,e) {
   loadClass(p);
   switch (e) {
     case 1:
-      student.comments += student.name + " used profanity toward the teacher. ";
-      student.comments += " The teacher gave the student a direct warning. ";
+      student.comments += student.firstName + " was talking about an unrelated topic during the lesson ";
+      student.comments += "and disrupting class. ";
+      student.comments += "The teacher gave the student a direct warning. ";
+      student.reasons.push(8); // Excessive talking
+      student.reasons.push(2); // Class disruption
       break;
     case 2:
-      student.comments += student.name + " used profanity toward a student. ";
-      student.comments += " The teacher gave the student a direct warning. ";
+
       break;
     default:
       student.comments += " The teacher gave the student a direct warning. ";
   }
 }
 
+function resetButt(p,s,e) {
+  let student = classes[p].students[s];
+  student.lives = 0;
+  student.powerUp = 0;
+  gameOverSound.play();
+  loadClass(p);
+   switch (e) {
+    case 1:
+      student.comments += student.firstName + " used profanity toward the teacher. ";
+      student.comments += " The teacher gave the student a direct warning. ";
+      student.reasons.push(5);
+      student.reasons.push(6);
+      student.reasons.push(16);
+      student.reasons.push(2);
+      break;
+    case 2:
+      student.comments += student.firstName + " used profanity toward a student. ";
+      student.comments += " The teacher gave the student a direct warning. ";
+      student.reasons.push(16);
+      break;
+    case 3:
+      student.comments += student.firstName + " was fighting. ";
+      student.comments += " The teacher gave the student a direct warning. ";
+      student.reasons.push(13);
+      break;
+    default:
+      student.comments += " The teacher gave the student a direct warning. ";
+  } 
+}
+
 function exportData() {
+  let d = Date();
+  let dv = d.valueOf();
   let output = "Period, Student, First Name, Last Name, Power Up, lives, coins, calculatorNumber, sex,";
   output += " grade,  incidents, race, tardies, special programs,  reasons, comments";
   output += "\n";
@@ -353,7 +416,7 @@ function downloadReport(p,s) {
   let da = tim.toLocaleDateString();
 	var textToWrite = log.value;
 	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-	var fileNameToSaveAs = student.lastName + '_' + student.firstName + '_' + da + ".csv";
+	var fileNameToSaveAs = student.lastName + '_' + student.firstName + '_' + da + "preliminaryDisciplinaryLogFile.csv";
 
 	var downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
@@ -383,7 +446,9 @@ function gameOver(p,s) {
   let tim = new Date();
   let t = tim.toLocaleTimeString();
   let da = tim.toLocaleDateString();
-  let output = "BROWNFIELD HIGH SCHOOL STUDENT CONFERENCE REPORT,,,,,,,,,,,,,,,,,,\n";
+  let output = "";
+  output += "MARIO CLASSROOM DISCIPLINE LOG --- OFFICIAL FORM PENDING,,,,,,,,,,,,,,,,,,\n";
+  //output += "BROWNFIELD HIGH SCHOOL STUDENT CONFERENCE REPORT,,,,,,,,,,,,,,,,,,\n";
   output += "Name:," + student.firstName + ' ' + student.lastName + ",,,,,,,Teacher Comments: (fill in below),\n";
   output += "Time:," + t + ", Date: ," + da + ",,,,," + student.comments.substr(0,100) + ",\n";
   output += "Sex:," + student.sex + ", Grade:, " + student.grade + ",,,,," + student.comments.substr(100,100) + ",\n";
@@ -587,11 +652,14 @@ function loadSpreadSheet() {
         otherReasons: "",
         comments: ""
       };
-      if (student.lives < 3) {
-        student.lives = 3;
+      if (student.lives < 2 || isNaN(student.lives)) {
+        student.lives = 2;
       }
-      if (student.powerUp < 1) {
+      if (student.powerUp < 1 || isNaN(student.powerUp)) {
         student.powerUp = 1;
+      }
+      if (isNaN(student.coins)) {
+        student.coins = 0;
       }
        for (let j = 0; j < classes.length; j++) {
          if (classes[j].period === spShAr[i][0]) {
