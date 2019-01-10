@@ -1,9 +1,8 @@
 emailaddresses =  "scott.geyer@brownfieldisd.net;";
 emailaddresses += "bhsdiscipline@brownfieldisd.net;";
 emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
-subject = "Student sent to ISS. Preliminary Discplinary Log File attached. Official form pending.";
-body = "The attached csv file is not the offical form. The official form will be sent as soon as I ";
-body += "am able to.";
+subject = "Student sent to ISS. Preliminary Disciplinary  Log File attached. Official form pending.";
+body = "The attached csv file is not the offical form. The official form will be sent as soon as possible. ";
 body += "\n\n-Mr. Geyer";
 
 classes = [
@@ -117,7 +116,8 @@ function loadClass(n) {
      output += " <button class='picButt' onClick='downloadReport(" + n + ", " + i + ")'>";
      output += " DR</button> ";
       
-     output += ' <a href="mailto:' + emailaddresses + '?subject=' + subject + '&body=' + body + '">';
+     output += ' <a href="mailto:' + emailaddresses + '?subject=' + subject + '&body=' + student.firstName;
+     output += ' ' + student.lastName + " was sent to ISS." +  body + '">';
      output += " SEND</button> ";
       
       
