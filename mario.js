@@ -73,7 +73,9 @@ classes = [
   }
 ];
 
-height = 64;
+height = 32;
+d = Date();
+dv = d.valueOf();
 
 var dieSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_mariodie.wav');
 var powerUpSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_powerup.wav');
@@ -182,7 +184,7 @@ function item(p,s){
     student.lastItem = "1up";
     student.lives += 1; 
     oneUpSound.play();
-  } else if(number > 70) {
+  } else if(number > 60) {
      switch (student.powerUp){
        case 0:
         break;
@@ -197,7 +199,7 @@ function item(p,s){
         break;
      }
     powerUpSound.play();
-  } else if(number > 60) {
+  } else if(number > 50) {
      student.lastItem = "20coin";
      student.coins += 20;
      coinSound.play();
@@ -338,8 +340,8 @@ function resetButt(p,s,e) {
 }
 
 function exportData() {
-  let d = Date();
-  let dv = d.valueOf();
+  d = Date();
+  dv = d.valueOf();
   let output = "Period, Student, First Name, Last Name, Power Up, lives, coins, calculatorNumber, sex,";
   output += " grade,  incidents, race, tardies, special programs,  reasons, comments";
   output += "\n";
