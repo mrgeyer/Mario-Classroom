@@ -1,8 +1,22 @@
-emailaddresses =  "scott.geyer@brownfieldisd.net;";
+  couchput = '<ol>';
+  couchput += '<li>Grab calculator, notes, folder.</li>';
+  couchput += '<li>Sit in your <color="red"><em>ASSIGNED SEAT</em></color> and get out your <em>bellwork.</em></li>';
+  couchput += '<li>You will receive your quiz after you are sitting in your assigned seat.</li>';
+  couchput += '<li>Absolutely no talking or phones during the quiz.</li>';
+  couchput += '<li>Remember you can use your bellwork on the quiz.</li>';
+  couchput += '<li>You can do it!</li>'
+  couchput += '</ol>';
+
+
+emailaddresses = "";
+//emailaddresses +=  "scott.geyer@brownfieldisd.net;";
 emailaddresses += "bhsdiscipline@brownfieldisd.net;";
 emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
-subject = "Student sent to ISS. Preliminary Disciplinary  Log File attached. Official form pending.";
-body = "The attached csv file is not the offical form. The official form will be sent as soon as possible. ";
+subject = "Student sent to ISS.";
+// subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
+body = "";
+//body += "If a csv file is attached, the csv file is not the offical form."; 
+body += "The official form will be sent as soon as possible. ";
 body += "\n\n-Mr. Geyer";
 
 classes = [
@@ -693,8 +707,10 @@ function couch(p) {
   if (couchRoster.length > 0) {
    personOnCouch = randomElementOf(couchRoster);
   }
-  
-  document.getElementById("couch").innerHTML = personOnCouch + " is on the couch today.";
+  let output = personOnCouch + " is on the couch today.";
+  output += '<br><img src ="images/seatingCharts/period' + classes[p].period + '.png">';
+  output += couchput;
+  document.getElementById("couch").innerHTML = output;
 }
 
 start();
