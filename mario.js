@@ -1,3 +1,27 @@
+  
+  couchput = "";
+  /*
+  couchput += '<ol>';
+  couchput += '<li>Grab calculator, notes, folder.</li>';
+  couchput += '<li>Sit in your <color="red"><em>ASSIGNED SEAT</em></color> and get out your <em>bellwork.</em></li>';
+  couchput += '<li>You will receive your quiz after you are sitting in your assigned seat.</li>';
+  couchput += '<li>Absolutely no talking or phones during the quiz.</li>';
+  couchput += '<li>Remember you can use your bellwork on the quiz.</li>';
+  couchput += '<li>You can do it!</li>';
+  couchput += '</ol>';
+  */
+
+emailaddresses = "";
+//emailaddresses =  "scott.geyer@brownfieldisd.net;";
+emailaddresses += "bhsdiscipline@brownfieldisd.net;";
+emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
+subject = "Student sent to ISS.";
+// subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
+body = "If a csv file is attached, the csv file is not the offical form. The official form will be sent as soon as possible. ";
+body += "\n\n-Mr. Geyer";
+
+var buttWidth = 32;
+
 // Timer Variables
 bellSchedule = [{
   period: 1,
@@ -76,22 +100,6 @@ var seconds = agenda[agendaItem].min * 60;
 var mode = agenda[agendaItem].mode;
 // End Timer Variables
 
-  couchput = '<ol>';
-  couchput += '<li>Grab calculator, notes, folder.</li>';
-  couchput += '<li>Sit in your <color="red"><em>ASSIGNED SEAT</em></color> and get out your <em>bellwork.</em></li>';
-  couchput += '<li>You will receive your quiz after you are sitting in your assigned seat.</li>';
-  couchput += '<li>Absolutely no talking or phones during the quiz.</li>';
-  couchput += '<li>Remember you can use your bellwork on the quiz.</li>';
-  couchput += '<li>You can do it!</li>';
-  couchput += '</ol>';
-
-emailaddresses =  "scott.geyer@brownfieldisd.net;";
-emailaddresses += "bhsdiscipline@brownfieldisd.net;";
-emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
-subject = "Student sent to ISS.";
-// subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
-body = "If a csv file is attached, the csv file is not the offical form. The official form will be sent as soon as possible. ";
-body += "\n\n-Mr. Geyer";
 
 classes = [
   {
@@ -178,6 +186,7 @@ buttons = document.getElementById("buttons");
 butt2 = document.getElementById("butt2");
 
 function start() {
+  hideSeatingChart();
   let output = "";
   for (let i = 0; i < classes.length; i++) {
     output += "<button onClick='loadClass(" + i + ")'> " + classes[i].period + " </button>";
@@ -201,10 +210,10 @@ function loadClass(n) {
     output += student.coins + " </td><td>";
     
     if (student.lives < 1) {
-      output += " <button class='picButt' onClick='gameOver(" + n + ", " + i + ")'>";
+      output += " <button onClick='gameOver(" + n + ", " + i + ")'>";
       output += " GAME OVER</button> ";
 
-     output += " <button class='picButt' onClick='downloadReport(" + n + ", " + i + ")'>";
+     output += " <button onClick='downloadReport(" + n + ", " + i + ")'>";
      output += " DR</button> ";
       
      output += ' <a href="mailto:' + emailaddresses + '?subject=' + subject + '&body=' + student.firstName;
@@ -250,17 +259,17 @@ function loadClass(n) {
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/reset.jpg' height=";
-      output += height + "></button>  ";
+      output += height + " width=" + buttWidth + "></button>  ";
       */
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/power.jpg' height=";
-      output += height + "></button>  ";
+      output += height + " width=" + buttWidth + "></button>  ";
       /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 3)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/SNESreset.jpg' height=";
-      output += height + "></button>  ";
+      output += height + " width=" + buttWidth + "></button>  ";
       */
     }
     output += "</td></tr>";
@@ -789,13 +798,30 @@ function couch(p) {
    personOnCouch = randomElementOf(couchRoster);
   } 
   output += personOnCouch + " is on the couch today.";
-  output += '<br><img src ="images/seatingCharts/period' + classes[p].period + '.png">';
+
   output += couchput;
   } else {
     output += agenda[agendaItem].mode;
   }
   document.getElementById("couch").innerHTML = output;
 }
+
+function showSeatingChart(p) {
+  output = '<img id="seatChartImg" src ="images/seatingCharts/period' + classes[p].period + '.png" width=100%>';
+  document.getElementById('seatingChart').innerHTML = output;
+  document.getElementById('seatingChart').style.display='block';
+  document.getElementById('seatingChartButton').innerHTML = "<button onclick='hideSeatingChart()'>Hide Seating Chart</button>";
+}
+
+function hideSeatingChart() {
+  document.getElementById('seatingChart').style.display='none';
+  output = "";
+  for (i = 0; i < classes.length; i++){
+   output += "<button onclick='showSeatingChart(" + i + ")'>SC" + 	classes[i].period + "</button>";
+  }
+  document.getElementById('seatingChartButton').innerHTML = output;
+}
+
 
 start();
 
@@ -893,9 +919,10 @@ function getPeriod() {
     startTimer();
     document.getElementById('timerButts').style.display='none';
     for(let j = 0; j < classes.length; j++){
-      if(classes[j].period === Period){
+      if(parseInt(classes[j].period) == Period){
          couch(j);
          loadClass(j);
+         showSeatingChart(j);
          return;
       }
     }
@@ -905,3 +932,5 @@ function getPeriod() {
   check = TIP - sumOfTheTimes;
   }
 }
+
+hideSeatingChart();
