@@ -12,13 +12,9 @@
   */
 
 emailaddresses = "";
-//emailaddresses =  "scott.geyer@brownfieldisd.net;";
-emailaddresses += "bhsdiscipline@brownfieldisd.net;";
-emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
 subject = "Student sent to ISS.";
 // subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
 body = "If a csv file is attached, the csv file is not the offical form. The official form will be sent as soon as possible. ";
-body += "\n\n-Mr. Geyer";
 
 var buttWidth = 32;
 
