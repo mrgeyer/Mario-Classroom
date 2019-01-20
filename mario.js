@@ -1,22 +1,90 @@
+// Timer Variables
+bellSchedule = [{
+  period: 1,
+  SH: 8,
+  SM: 05,
+  EH: 8,
+  EM: 55
+},
+{
+  period: 3,
+  SH: 9,
+  SM: 50,
+  EH: 10,
+  EM: 40
+  },
+ {
+  period: 5,
+  SH: 11,
+  SM: 30,
+  EH: 12,
+  EM: 20
+     },
+ {
+  period: 7,
+  SH: 13,
+  SM: 50,
+  EH: 14,
+  EM: 45
+}];
+agendaItem = 0;
+agenda = [{
+    mode: "Bellwork",
+    min: 3,
+    initial: "BW"
+  },
+  /*        
+  {
+    mode: "Discuss Bellwork",
+    min: 3,
+    initial: "DB"
+  },
+  */
+  {
+    mode: "Complex Plane Dance",
+    min: 1,
+    initial: "K"
+  },
+  {       
+    mode: "Complex Number Operations",
+    min: 1,
+    initial: "I"
+  },
+  {       
+    mode: "Break",
+    min: 1,
+    initial: "BK"
+  },
+  {       
+    mode: "Independent Practice",
+    min: 1,
+    initial: "P"
+      },
+  {       
+    mode: "Exit Ticket",
+    min: 1,
+    initial: "E"   
+}];
+periodIndex = 0;
+var seconds = agenda[agendaItem].min * 60;
+var mode = agenda[agendaItem].mode;
+// End Timer Variables
+
   couchput = '<ol>';
   couchput += '<li>Grab calculator, notes, folder.</li>';
   couchput += '<li>Sit in your <color="red"><em>ASSIGNED SEAT</em></color> and get out your <em>bellwork.</em></li>';
   couchput += '<li>You will receive your quiz after you are sitting in your assigned seat.</li>';
   couchput += '<li>Absolutely no talking or phones during the quiz.</li>';
   couchput += '<li>Remember you can use your bellwork on the quiz.</li>';
-  couchput += '<li>You can do it!</li>'
+  couchput += '<li>You can do it!</li>';
   couchput += '</ol>';
 
-
-emailaddresses = "";
-//emailaddresses +=  "scott.geyer@brownfieldisd.net;";
+emailaddresses =  "scott.geyer@brownfieldisd.net;";
 emailaddresses += "bhsdiscipline@brownfieldisd.net;";
 emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
 subject = "Student sent to ISS.";
 // subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
-body = "";
-//body += "If a csv file is attached, the csv file is not the offical form."; 
-body += "The official form will be sent as soon as possible. ";
+body = "If a csv file is attached, the csv file is not the offical form. The official form will be sent as soon as possible. ";
 body += "\n\n-Mr. Geyer";
 
 classes = [
@@ -42,7 +110,7 @@ classes = [
         otherReasons: "",
         comments: ""
       },
-            {
+       {
         name: "Ri",
         firstName: "Ta",
         lastName: "Ri",
@@ -97,6 +165,7 @@ var gameOverSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-C
 var coinSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_coin.wav');
 var hitSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_pipe.wav');
 var oneUpSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_1-up.wav');
+var timeSound = new Audio('https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/sounds/smb_warning.wav');
 
 log = document.getElementById("inputTextToSave");
 buttons = document.getElementById("buttons");
@@ -236,6 +305,7 @@ function item(p,s){
 }
 
 function enemy(p,s,e) {
+  breakMinus(1);
   let student = classes[p].students[s];
   if (student.powerUp > 1) {
       student.powerUp -= 1;
@@ -297,6 +367,7 @@ function enemy(p,s,e) {
 
 
 function pit(p,s,e) {
+  breakMinus(2);
   let student = classes[p].students[s];
   student.lives -= 1;
   if (student.lives === 0) {
@@ -517,32 +588,32 @@ function gameOver(p,s) {
   if (student.reasons.includes(7)) {
     output += "[X] Excessive Absences ";
   }
-  output += ",,,,,,,,  \\              |   |   |     |  ,\n";
+  output += ",,,,,,,,,\n";
 
   output += ",";
   if (student.reasons.includes(8)) {
     output += "[X] Excessive talking ";
   }
-  output += ",,,,,,,,  |\\.         -|--|-  |\\_/|     _                 _      _,\n";
+  output += ",,,,,,,,,\n";
   
   
   output += ",";
     if (student.reasons.includes(9)) {
     output += "[X] Excessive Tardies ";
   }
-  output += ",,,,,,,, /  |   /  /\\ |   |   |_    |   /_\\             /_\\    |\\,\n";
+  output += ",,,,,,,,,\n";
   
    output += ",";
    if (student.reasons.includes(10)) {
     output += "[X] Failure to participate in class ";
   }
-  output += ",,,,,,Teacher Signature,,|__/`\\_\\/  \\   \\  / ___/_/\\___|_|_/\\___| ,\n"; 
+  output += ",,,,,,Teacher Signature,,,\n"; 
   
   output += ",";
    if (student.reasons.includes(11)) {
     output += "[X] Failure to return forms ";
   }
-  output += ",,,,,,,,                                                 ___/,\n";
+  output += ",,,,,,,,,\n";
   
   output += ",";
    if (student.reasons.includes(12)) {
@@ -696,6 +767,8 @@ function randomElementOf(theArray) {
 }
 
 function couch(p) {
+  let output = "";
+  if (agenda[agendaItem].mode === "Bellwork") {
   couchRoster = [];
   let personOnCouch = "No one";
   for (let i = 0; i < classes[p].students.length; i++) {
@@ -706,11 +779,106 @@ function couch(p) {
   }
   if (couchRoster.length > 0) {
    personOnCouch = randomElementOf(couchRoster);
-  }
-  let output = personOnCouch + " is on the couch today.";
+  } 
+  output += personOnCouch + " is on the couch today.";
   output += '<br><img src ="images/seatingCharts/period' + classes[p].period + '.png">';
   output += couchput;
+  } else {
+    output += agenda[agendaItem].mode;
+  }
   document.getElementById("couch").innerHTML = output;
 }
 
 start();
+
+// start timer
+
+
+function showTime() {
+  minute = Math.floor(seconds / 60);
+  second = Math.floor(seconds % 60 * 10) / 10;
+  if (second < 10) {
+    time = minute.toString() + ":0" + second.toString();
+  } else {
+    time = minute.toString() + ":" + second.toString();
+  }
+  document.getElementById("timer").innerHTML = time;
+}
+
+function breakMinus(n) {
+  /*
+  if (brk > n-1) {
+    brk -= n;
+  }
+  */
+  brk = 0;
+  document.getElementById("breakNum").innerHTML = brk;
+  if (mode=='Break'){
+      seconds = brk * 60;
+      showTime();
+  }
+}
+
+function changeTimer() {
+  if (seconds > 0) {
+    seconds -= 1;
+  } else {
+    agendaItem += 1;
+    if (agendaItem === agenda.length) {
+      getPeriod();
+    } else {
+    mode = agenda[agendaItem].mode;
+    seconds = agenda[agendaItem].min * 60;
+    timeSound.play();
+    }
+  }
+  document.getElementById("test").innerHTML = mode;
+  showTime();  
+}
+
+function startTimer() {
+  countdown = window.setInterval(changeTimer, 1000);
+}
+
+function stop() {
+  running = false;
+  clearInterval(countdown);
+}
+
+function getPeriod() {
+  Period = 3;
+  let dt = new Date();
+  let hour = dt.getHours();
+  let minute = dt.getMinutes();
+  let TIM = hour*60 + minute; // Time in Minutes
+  for(let i = 0; i < bellSchedule.length; i++) {
+    let PS = bellSchedule[i].SH*60 + bellSchedule[i].SM;
+    let PE = bellSchedule[i].EH*60 + bellSchedule[i].EM;
+    if (TIM > PS && TIM < PE) {
+      periodIndex = i;
+      Period = bellSchedule[i].period;
+      TIP = TIM - PS;
+    }
+  }
+  let sumOfTheTimes = 0;
+  let check = TIP;
+  for (let i = 0; i < agenda.length; i++) {
+  if (check < agenda[i].min) {
+    agendaItem = i;
+    mode = agenda[i].mode;
+    seconds = (agenda[i].min - check)*60;
+    couch(periodIndex);
+    loadClass(periodIndex);
+    startTimer();
+
+    return;
+    for(let j = 0; j < classes.length; j++){
+      if(classes[i].period === Period){
+
+      }
+    }
+  }
+  sumOfTheTimes += agenda[i].min;
+  check = TIP - sumOfTheTimes;
+  }
+}
