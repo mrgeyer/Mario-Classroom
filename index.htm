@@ -3,13 +3,31 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
+<!-- start timer -->
+<p class="marg"><span id="timer">8:00</span></div>
+<span id="test"></span>
+    <button  onclick="getPeriod()">Get Period</button>
+  <button  onclick="startTimer()">Start</button> 
+  <button onclick="stop()">Stop</button> 
+  
+   
+ 
+  
+
+  
+<button onclick="breakMinus(1)">No Break</button>
+<span id="breakNum"> 4 </span>
+</p>
+  
+<!-- end timer -->
+<p id="demo"></p>
+<p id="butt2"></p>
 <p id="couch"></p>
 <p id="buttons"></p>
 
-<p id="butt2"></p>
+
 
 <p>
-  
   <input type="file" id="fileToLoad"> 
  <button onClick='loadSpreadSheet()'>Import</button> 
  <button onClick='start()'>Show Buttons</button> 
