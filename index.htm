@@ -4,28 +4,29 @@
 </head>
 <body>
 <!-- start timer -->
-<p class="marg"><span id="timer">8:00</span></div>
+
+<p class="marg">
+<span id="seatingChartButton"></span> <span id="butt2"></span>
+<button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
+</p>
+<p class="marg">
+<span id="timer">8:00</span>
 <span id="test"></span>
   <span id="timerButts">
     <button  onclick="getPeriod()">Get Period</button>
-    <button  onclick="startTimer()">Start</button> 
+    <button  onclick="startTimer()">Start</button>
   </span>
-  <button onclick="stop()">Stop</button> 
-  
-   
- 
-  
-
-  
-<button onclick="breakMinus(1)"><span id="breakButt">Break</button>
-<span id="breakNum"> </span>
+    <button onclick="stop()">Stop</button> 
 </p>
+    
   
 <!-- end timer -->
 <p id="demo"></p>
-<p id="butt2"></p>
 <p id="couch"></p>
+<p id="seatingChart"></p>
 <p id="buttons"></p>
+
+
 
 
 
@@ -54,7 +55,7 @@ onclick="document.getElementById
 
 <textarea id="inputTextToSave" 
 
-style="width:700px;height:100px"></textarea>
+style="width:300px;height:100px"></textarea>
 
   <script src="mario.js"></script>
 </body>
