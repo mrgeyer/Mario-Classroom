@@ -2,7 +2,7 @@
 bellSchedule = [{
   period: 1,
   SH: 8,
-  SM: 05,
+  SM: 5,
   EH: 8,
   EM: 55
 },
@@ -30,39 +30,45 @@ bellSchedule = [{
 agendaItem = 0;
 agenda = [{
     mode: "Bellwork",
-    min: 3,
+    min: 7,
+    const: 7,
     initial: "BW"
   },
   /*        
   {
     mode: "Discuss Bellwork",
-    min: 3,
+    min: 5,
     initial: "DB"
   },
   */
   {
     mode: "Complex Plane Dance",
-    min: 1,
+    min: 3,
+    const: 3,
     initial: "K"
   },
   {       
     mode: "Complex Number Operations",
-    min: 1,
+    min: 12,
+    const: 12,
     initial: "I"
   },
   {       
     mode: "Break",
-    min: 1,
+    min: 4,
+    const: 4,
     initial: "BK"
   },
   {       
     mode: "Independent Practice",
-    min: 1,
+    min: 12,
+    const: 12,
     initial: "P"
       },
   {       
     mode: "Exit Ticket",
-    min: 1,
+    min: 7,
+    const: 7,
     initial: "E"   
 }];
 periodIndex = 0;
@@ -207,16 +213,17 @@ function loadClass(n) {
       
       
     } else {
+ 
        output += " <button class='picButt' onClick='item(" + n + ", " + i + ")'>";
        output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
        output += "Classroom/master/images/buttons/";
        output += student.lastItem + ".png' height="+ height + "></button> ";
-
+      /*
       output += " <button class='picButt' onClick='enemy(" + n + ", "  + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/goomba.png' height=";
       output += height + 'alt="No materials."></button> ';
-      
+      */
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/redTurtle.png' height=" + height + "></button>  ";
@@ -224,11 +231,11 @@ function loadClass(n) {
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/greenTurtle.png' height=" + height + "></button>  ";
-
+      /*
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 3)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/beetle.png' height=" + height + "></button>  ";    
-
+      */
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/lava.png' height=";
@@ -239,21 +246,22 @@ function loadClass(n) {
       output += "Classroom/master/images/buttons/water.png' height=";
       output += height + "></button>  ";
 */    
+      /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/reset.jpg' height=";
       output += height + "></button>  ";
-      
+      */
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/power.jpg' height=";
       output += height + "></button>  ";
-      
+      /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 3)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/SNESreset.jpg' height=";
       output += height + "></button>  ";
-      
+      */
     }
     output += "</td></tr>";
   }
@@ -305,7 +313,7 @@ function item(p,s){
 }
 
 function enemy(p,s,e) {
-  breakMinus(1);
+  //breakMinus(1);
   let student = classes[p].students[s];
   if (student.powerUp > 1) {
       student.powerUp -= 1;
@@ -367,7 +375,7 @@ function enemy(p,s,e) {
 
 
 function pit(p,s,e) {
-  breakMinus(2);
+  //breakMinus(2);
   let student = classes[p].students[s];
   student.lives -= 1;
   if (student.lives === 0) {
@@ -811,11 +819,16 @@ function breakMinus(n) {
     brk -= n;
   }
   */
-  brk = 0;
-  document.getElementById("breakNum").innerHTML = brk;
-  if (mode=='Break'){
-      seconds = brk * 60;
-      showTime();
+  for(let i = 0; i < agenda.length; i++) {
+    if (agenda[i].mode === "Break") {
+      agenda[i+1].min += agenda[i].min;
+      agenda[i].min = 0;
+      document.getElementById("breakButt").innerHTML = "No Break";
+      if (mode=='Break'){
+        seconds = agenda[i].min * 60;
+         showTime();
+      }
+    }
   }
 }
 
@@ -838,14 +851,23 @@ function changeTimer() {
 
 function startTimer() {
   countdown = window.setInterval(changeTimer, 1000);
+  document.getElementById('timerButts').style.display='none';
 }
 
 function stop() {
   running = false;
   clearInterval(countdown);
+  document.getElementById('timerButts').style.display='inline';
 }
 
 function getPeriod() {
+  for(let i = 0; i < agenda.length; i++) {
+    if (agenda[i].mode === "Break") {
+      agenda[i].min = agenda[i].const;
+      agenda[i+1].min = agenda[i+1].const;
+      document.getElementById("breakButt").innerHTML = "Break";
+     }
+    }
   Period = 3;
   let dt = new Date();
   let hour = dt.getHours();
@@ -867,16 +889,17 @@ function getPeriod() {
     agendaItem = i;
     mode = agenda[i].mode;
     seconds = (agenda[i].min - check)*60;
-    couch(periodIndex);
-    loadClass(periodIndex);
+
     startTimer();
-
-    return;
+    document.getElementById('timerButts').style.display='none';
     for(let j = 0; j < classes.length; j++){
-      if(classes[i].period === Period){
-
+      if(classes[j].period === Period){
+         couch(j);
+         loadClass(j);
+         return;
       }
     }
+    return;
   }
   sumOfTheTimes += agenda[i].min;
   check = TIP - sumOfTheTimes;
