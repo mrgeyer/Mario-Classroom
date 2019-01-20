@@ -6,8 +6,10 @@
 <!-- start timer -->
 <p class="marg"><span id="timer">8:00</span></div>
 <span id="test"></span>
+  <span id="timerButts">
     <button  onclick="getPeriod()">Get Period</button>
-  <button  onclick="startTimer()">Start</button> 
+    <button  onclick="startTimer()">Start</button> 
+  </span>
   <button onclick="stop()">Stop</button> 
   
    
@@ -33,16 +35,26 @@
  <button onClick='start()'>Show Buttons</button> 
   <br \>
   
-<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='none'">Hide</button>
+<button class="CTbutton" type="button" 
 
-<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='block'">Show</button>
+onclick="document.getElementById
+
+('inputTextToSave').style.display='none'">Hide</button>
+
+<button class="CTbutton" type="button" 
+
+onclick="document.getElementById
+
+('inputTextToSave').style.display='block'">Show</button>
   
 <button onClick='exportData()'>Spreadsheet Log</button>
 <button class="CTbutton" onclick="saveTextAsFile()">Save Log</button>
 
 </p>
 
-<textarea id="inputTextToSave" style="width:700px;height:100px"></textarea>
+<textarea id="inputTextToSave" 
+
+style="width:700px;height:100px"></textarea>
 
   <script src="mario.js"></script>
 </body>
