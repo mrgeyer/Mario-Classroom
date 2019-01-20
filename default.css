@@ -2,9 +2,32 @@ body {
   background-color: black;
   color: white;
   font-family: monospace;
-  font-size: 32px;    
+  font-size: 20px;    
 }
 
-pickButt {
-  border: 0px;
+
+
+
+.marg {
+  margin: 5px;
+}
+
+button {
+  border: none;
+  color: black;
+  background-color: #7777FF;
+}
+
+.picButt {
+  background-color: #000000;
+  color: #FFFFFF;
+  margin: none;
+  border: none;
+}
+
+
+
+#seatChartImg {
+  width=100%;
+
 }
