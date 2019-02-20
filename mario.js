@@ -1,4 +1,61 @@
-  
+height = 16;
+var buttWidth = 8;
+
+
+agenda = [{
+    mode: "Bellwork<p class='bellwork'> The notes are the same as Tuesday's.</p> Grab your bellwork, assignment tracker, calculator, and folder.<p class='bellwork'>You MUST sit in your assigned seat. If everyone sits in their assigned seat, the class gets a red coin.</p><p class='bellwork'>Start working on the bellwork. I will come by ONLY ONCE and stamp your bellwork if you are working.</p>",
+    min: 8,
+    const: 8,
+    initial: "BW"
+  },
+  {
+    mode: "Discuss Bellwork<p>You should be done with the bellwork. Does anyone want to work the problem on the board for extra credit (and a red coin for the class if it is completed before the timer runs out.).</p>",
+    min: 5,
+    const: 5,
+    initial: "DB"
+  },
+  {     
+    mode: "Compare/Contrast Tutoring/Teaching",
+    min: 2,
+    const: 2,
+    initial: "N" 
+  },
+  {     
+    mode: "Notes",
+    min: 8,
+    const: 8,
+    initial: "N" 
+  },
+  {     
+    mode: "Break",
+    min: 3,
+    const: 3,
+    initial: "BK" 
+  },
+  {     
+    mode: "Feynman it Forward",
+    min: 8,
+    const: 8,
+    initial: "BK"
+  },
+  {     
+    mode: "Color in Notes",
+    min: 1,
+    const: 1,
+    initial: "BK"
+  },
+  {     
+    mode: "Independent Practice",
+    min: 8,
+    const: 8,
+    initial: "P"
+  },
+  {     
+    mode: "Exit Ticket",
+    min: 8,
+    const: 8,
+    initial: "EX"    
+}];  
   couchput = "";
   /*
   couchput += '<ol>';
@@ -12,11 +69,14 @@
   */
 
 emailaddresses = "";
+//emailaddresses =  "scott.geyer@brownfieldisd.net;";
+emailaddresses += "bhsdiscipline@brownfieldisd.net;";
+emailaddresses += "Betty.Vela@brownfieldisd.net;SheriChasteen@brownfieldisd.net";
 subject = "Student sent to ISS.";
 // subject += " Preliminary Disciplinary  Log File attached. Official form pending.";
 body = "If a csv file is attached, the csv file is not the offical form. The official form will be sent as soon as possible. ";
+body += "\n\n-Mr. Geyer";
 
-var buttWidth = 32;
 
 // Timer Variables
 bellSchedule = [{
@@ -48,49 +108,7 @@ bellSchedule = [{
   EM: 45
 }];
 agendaItem = 0;
-agenda = [{
-    mode: "Bellwork",
-    min: 7,
-    const: 7,
-    initial: "BW"
-  },
-  /*        
-  {
-    mode: "Discuss Bellwork",
-    min: 5,
-    initial: "DB"
-  },
-  */
-  {
-    mode: "Complex Plane Dance",
-    min: 3,
-    const: 3,
-    initial: "K"
-  },
-  {       
-    mode: "Complex Number Operations",
-    min: 12,
-    const: 12,
-    initial: "I"
-  },
-  {       
-    mode: "Break",
-    min: 4,
-    const: 4,
-    initial: "BK"
-  },
-  {       
-    mode: "Independent Practice",
-    min: 12,
-    const: 12,
-    initial: "P"
-      },
-  {       
-    mode: "Exit Ticket",
-    min: 7,
-    const: 7,
-    initial: "E"   
-}];
+
 periodIndex = 0;
 var seconds = agenda[agendaItem].min * 60;
 var mode = agenda[agendaItem].mode;
@@ -118,7 +136,8 @@ classes = [
         specialPrograms: [],
         reasons: [],
         otherReasons: "",
-        comments: ""
+        comments: "",
+	redCoins: 0
       },
        {
         name: "Ri",
@@ -137,7 +156,8 @@ classes = [
         specialPrograms: [],
         reasons: [],
         otherReasons: "",
-        comments: ""
+        comments: "",
+	redCoins: 0
       }
     ] // close students
   },
@@ -159,13 +179,14 @@ classes = [
         race: "human",
         specialPrograms: [],
         reasons: [],
-        comments: ""
+        comments: "",
+	redCoins: 0
       }
     ] // close students
   }
 ];
 
-height = 32;
+
 d = Date();
 dv = d.valueOf();
 
@@ -193,9 +214,10 @@ function start() {
 
 function loadClass(n) {
   let output = "<table>";
-  
+  let redCoins = 0;
   for (let i = 0; i < classes[n].students.length; i++) {
     let student = classes[n].students[i];
+    redCoins += student.redCoins;
     output += "<tr><td><img src='https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/images/powerUps/";
     output += student.powerUp + ".png' height="+ height + "> ";
     output += student.name + " x " + student.lives;
@@ -223,16 +245,23 @@ function loadClass(n) {
        output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
        output += "Classroom/master/images/buttons/";
        output += student.lastItem + ".png' height="+ height + "></button> ";
+ // redcoins
+       output += " <button class='picButt' onClick='redCoin(" + n + ", " + i + ")'>";
+       output += "<img src='";
+       //output += "https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+       output += "images/buttons/";
+       output += "redCoin.png' height="+ height + "></button> ";
       /*
       output += " <button class='picButt' onClick='enemy(" + n + ", "  + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/goomba.png' height=";
       output += height + 'alt="No materials."></button> ';
       */
+// red turtle = tardy
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/redTurtle.png' height=" + height + "></button>  ";
-
+// green turtle = off task
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/greenTurtle.png' height=" + height + "></button>  ";
@@ -241,6 +270,7 @@ function loadClass(n) {
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/beetle.png' height=" + height + "></button>  ";    
       */
+// lava = off task
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/lava.png' height=";
@@ -271,49 +301,52 @@ function loadClass(n) {
     output += "</td></tr>";
   }
   buttons.innerHTML = output;
+  let redCoinOutput = "<img src ='";
+  //redCoinOutput +="/https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+   redCoinOutput += "images/buttons/";
+   redCoinOutput += "redCoin.png' height="+ height + "></button> ";
+   redCoinOutput += " x " + redCoins;
+  document.getElementById("redCoins").innerHTML = redCoinOutput;
 }
 
 function item(p,s){
   let student = classes[p].students[s];
   let number = Math.floor(Math.random()*100);
-  if (number > 95) {
+/*
+  if (number > 98) {
     student.lastItem = "1up";
     student.lives += 1; 
     oneUpSound.play();
-  } else if(number > 60) {
+  } else {
+*/
      switch (student.powerUp){
        case 0:
         break;
        case 1:
         student.lastItem = "mushroom";
         student.powerUp = 2;
+        powerUpSound.play();
         break;
        case 2:
-       case 3:
+
         student.lastItem = "flower";
         student.powerUp = 3;
+        powerUpSound.play();
         break;
+       case 3:
+        student.lastItem = "coin";
+        student.coins += 1;
+        coinSound.play();
      }
-    powerUpSound.play();
-  } else if(number > 50) {
-     student.lastItem = "20coin";
-     student.coins += 20;
-     coinSound.play();
-  } else if(number > 40) {
-     student.lastItem = "5coin";
-     student.coins += 5;
-     coinSound.play();
-  } else {
-     student.lastItem = "coin";
-     student.coins += 1;
-     coinSound.play();
-  }
-  if (student.coins > 100) {
-    student.lives += 1;
-    student.coins = student.coins%100;
-  }
-  // student.comments += student.name + " was participating in class. ";
-  // student.comments += "The teacher recognized the student's contribution to class. ";
+  //}
+   student.comments += student.name + " was participating in class. ";
+   student.comments += "The teacher recognized the student's contribution to class. ";
+  loadClass(p);
+}
+
+function redCoin(p,s){
+  let student = classes[p].students[s];
+  student.redCoins += 1;
   loadClass(p);
 }
 
@@ -322,14 +355,14 @@ function enemy(p,s,e) {
   let student = classes[p].students[s];
   if (student.powerUp > 1) {
       student.powerUp -= 1;
-      hitSound.play();   
+      //hitSound.play();   
   } else if (student.powerUp === 1) {
      student.lives -= 1;
      if (student.lives === 0) {
        student.powerUp = 0;
-       gameOverSound.play();
+       //gameOverSound.play();
      } else {
-       dieSound.play();
+       //dieSound.play();
      }
   }
   loadClass(p);
@@ -385,9 +418,9 @@ function pit(p,s,e) {
   student.lives -= 1;
   if (student.lives === 0) {
     student.powerUp = 0;
-    gameOverSound.play();
+    //gameOverSound.play();
   } else {
-    dieSound.play();
+    //dieSound.play();
     student.powerUp = 1;
   }
   loadClass(p);
@@ -441,7 +474,7 @@ function exportData() {
   d = Date();
   dv = d.valueOf();
   let output = "Period, Student, First Name, Last Name, Power Up, lives, coins, calculatorNumber, sex,";
-  output += " grade,  incidents, race, tardies, special programs,  reasons, comments";
+  output += " grade,  incidents, race, tardies, special programs,  reasons, comments, red coins";
   output += "\n";
 
   for(let p = 0; p < classes.length; p++){
@@ -462,6 +495,7 @@ function exportData() {
         output += student.reasons[i] + ";";
       }
       output += ", " + student.comments;
+      output += ", " + student.redCoins;
       output += "\n";
      
     }
@@ -750,7 +784,8 @@ function loadSpreadSheet() {
         specialPrograms: spShAr[i][12].split(";"),
         reasons: [],
         otherReasons: "",
-        comments: ""
+        comments: "",
+	redCoins: parseInt(spShAr[i][16])
       };
       if (student.lives < 3 || isNaN(student.lives)) {
         student.lives = 3;
@@ -760,6 +795,9 @@ function loadSpreadSheet() {
       }
       if (isNaN(student.coins)) {
         student.coins = 0;
+      }
+      if (isNaN(student.redCoins)) {
+        student.redCoins = 0;
       }
        for (let j = 0; j < classes.length; j++) {
          if (classes[j].period === spShAr[i][0]) {
@@ -781,7 +819,6 @@ function randomElementOf(theArray) {
 
 function couch(p) {
   let output = "";
-  if (agenda[agendaItem].mode === "Bellwork") {
   couchRoster = [];
   let personOnCouch = "No one";
   for (let i = 0; i < classes[p].students.length; i++) {
@@ -796,9 +833,6 @@ function couch(p) {
   output += personOnCouch + " is on the couch today.";
 
   output += couchput;
-  } else {
-    output += agenda[agendaItem].mode;
-  }
   document.getElementById("couch").innerHTML = output;
 }
 
@@ -860,7 +894,7 @@ function changeTimer() {
   } else {
     agendaItem += 1;
     if (agendaItem === agenda.length) {
-      getPeriod();
+      //getPeriod();
     } else {
     mode = agenda[agendaItem].mode;
     seconds = agenda[agendaItem].min * 60;
@@ -916,7 +950,7 @@ function getPeriod() {
     document.getElementById('timerButts').style.display='none';
     for(let j = 0; j < classes.length; j++){
       if(parseInt(classes[j].period) == Period){
-         couch(j);
+         //couch(j);
          loadClass(j);
          showSeatingChart(j);
          return;

@@ -3,12 +3,17 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
+
 <!-- start timer -->
 
 <p class="marg">
 <span id="seatingChartButton"></span> <span id="butt2"></span>
 <button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
 </p>
+<table>
+<tr>
+  <td><p id="seatingChart"></p></td>
+  <td>
 <p class="marg">
 <span id="timer">8:00</span>
 <span id="test"></span>
@@ -23,13 +28,18 @@
 <!-- end timer -->
 <p id="demo"></p>
 <p id="couch"></p>
-<p id="seatingChart"></p>
+</td></tr>
+<tr><td>
+<canvas id ="BB" width="675" height="400" data-processing-sources="scripts/draw.js"></canvas><br><br>
+</td>
+<td>
+<p id="redCoins"></p>
 <p id="buttons"></p>
 
 
 
 
-
+</td></tr></table>
 <p>
   <input type="file" id="fileToLoad"> 
  <button onClick='loadSpreadSheet()'>Import</button> 
@@ -58,4 +68,6 @@ onclick="document.getElementById
 style="width:300px;height:100px"></textarea>
 
   <script src="mario.js"></script>
+<script src="script/processing.min.js"></script>
+
 </body>
