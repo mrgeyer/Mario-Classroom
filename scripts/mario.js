@@ -323,14 +323,14 @@ function enemy(p,s,e) {
   let student = classes[p].students[s];
   if (student.powerUp > 1) {
       student.powerUp -= 1;
-      //hitSound.play();   
+      hitSound.play();   
   } else if (student.powerUp === 1) {
      student.lives -= 1;
      if (student.lives === 0) {
        student.powerUp = 0;
-       //gameOverSound.play();
+       gameOverSound.play();
      } else {
-       //dieSound.play();
+       dieSound.play();
      }
   }
   loadClass(p);
@@ -386,9 +386,9 @@ function pit(p,s,e) {
   student.lives -= 1;
   if (student.lives === 0) {
     student.powerUp = 0;
-    //gameOverSound.play();
+    gameOverSound.play();
   } else {
-    //dieSound.play();
+    dieSound.play();
     student.powerUp = 1;
   }
   loadClass(p);
