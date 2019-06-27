@@ -4,6 +4,13 @@ Demo: https://mrgeyer.github.io/Mario-Classroom/
 
 ## Download
 
+Click Clone or Download and then Download ZIP. Extract the ZIP file.
+
+Note: Currently, the blackboard does not work in Chrome, and the download button does not work in Firefox. 
+
+## Run
+
+To run the program, double click on the index.htm file.
 
 ## Create a CSV file
 
@@ -37,5 +44,7 @@ Click Choose File and select your file (If you downloaded it, it should be in yo
 
 ## Save
 
-To save, click Spreadsheet Log and then click Save Log. If you're using FireFox, you may have to copy the text box and paste it into a 
+To save, click Spreadsheet Log and then click Save Log. 
+
+Note: If you're using FireFox, you may have to copy the text box and paste it into a text editor. Save it as a .csv file if you want to open it in a spreadsheet program. It will still work in Mario Classroom if you save it as a text file.
 
