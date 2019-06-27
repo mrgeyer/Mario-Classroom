@@ -3,7 +3,7 @@ Thank you for checking out the Mario Classroom web app. While I have used this i
 
 I made this app mostly for my own use. While it is a simple app, it may not be intutitive for people who are not familiar with JSON and basic web development. Hopefully, the following instructions are succificient for you to use the app. 
 
-Some features I may consider adding if there are demand for them: a reset button for the timer and a way to upload and download agendas and bell schedules.
+Some features I may consider adding if there are demand for them: a reset button for the timer, a way to add agenda items for more than one class and more than one day, and a way to upload and download agendas and bell schedules.
 
 Note: Currently, the blackboard does not work in Chrome unless you set up a localhost server on your computer, and the download button does not work in Firefox. 
 
@@ -123,7 +123,8 @@ It should look like this:
 - Enter the number of minutes for each agenda item after min: and const:.
 - The const property is for resetting the minutes if the break button feature is used.
 - The initial property is not currently being used. It can be ommitted. 
--
+- Currently, the agenda feature only supports one class. You could copy the program and make another folder for another class. 
+- If your agenda changes you would need to update the agenda each day.
 It should look like this:
 <code>
 agenda = [{
