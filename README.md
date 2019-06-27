@@ -5,6 +5,8 @@ I made this app mostly for my own use. While it is a simple app, it may not be i
 
 Some features I may consider adding if there are demand for them: a reset button for the timer and a way to upload and download agendas and bell schedules.
 
+Note: Currently, the blackboard does not work in Chrome unless you set up a localhost server on your computer, and the download button does not work in Firefox. 
+
 If you want to leave feedback or suggestions, please use the Issues tap at the top of the page. Then click New issue unless you see the issue listed.
 
 Demo: https://mrgeyer.github.io/Mario-Classroom/
@@ -15,7 +17,7 @@ Demo: https://mrgeyer.github.io/Mario-Classroom/
 
 Click Clone or Download and then Download ZIP. Extract the ZIP file.
 
-Note: Currently, the blackboard does not work in Chrome, and the download button does not work in Firefox. 
+
 
 If you have a Github account, you could also fork it and then use Github.io. However, you may need to change the code to load the seating chart images on your computer if you do not want them to be public. 
 
@@ -170,4 +172,36 @@ If Get Period does not work, then you can click Start to use the timer. However,
 
 If this becomes an issue for you, please click the Issue tab and share your issue with it and I will consider making a Reset button for the timer. 
 
+## Set up email feature
+- Ask your administrators about email policies before using this feature.
+- Enter email addresses of your administrators that you want to send emails to in the quotes where it says <code>emailaddresses = "";</code>
+- Make sure to seperate email addresses with a ;
+- You can also use the <code>emailaddresses += "";</code> to add more email addresses on another line. 
+- Enter the subject of the email in the "" where it says <code>subject = "";</code>
+- Enter the message text of the email in the "" where it says <code>body = "";</code>
 
+# Participation and Discipline Features
+
+- If you class is not loaded, click the period number at the top to load the class.
+- When a student participates in class, click the ? box.
+- When a student is tardy, click the red turtle. 
+- When the class earns a red coin for a whole class reward, click the red coin by an individual student. Only click one. 
+- If a student is not on task, click the turtle. They will lose a power up. If they do not have a power up, they will lose a life. If they have no lives, they will be put in game over status.
+- If a student is disrupting class, click the lava. They will lose a life. If they have no lives, they will be put in game over status.
+- If a student is using profanity or doing something that requires being sent to the principal, click the POWER button. They will be put in game over status.
+- Once a student is in game over status, click on GAME OVER to generate a report and DR to download the report. 
+- To send an email to administrators, click the SEND link. However, you have to add emails and the message you want to send for this to work.
+
+# Couch feature
+
+- If you happen to have a couch, you can click the C# button at the top to pick a student who has a fire flower to sit on the couch. If you don't have a couch, you can edit the mario.js code to change the reward to something else where it says reward = " is on the couch today."
+
+# Blackboard feature
+
+-To use the blackboard feature on Chrome, you will need to set up a <a href="https://gist.github.com/jgravois/5e73b56fa7756fd00b89">local host server</a> on your computer. 
+- To pick a color, click on the color on the right side.
+- To make the pen bigger or smaller, click the + or - respectively. 
+- To erase a portion of the screen, click the small e. Then click a color to draw again.
+- To erase the whole screen, click the large E.
+
+That should be all the features. If you have any questions, submit them using the Issues tab.
