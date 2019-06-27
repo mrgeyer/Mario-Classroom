@@ -1,6 +1,11 @@
-Thank you for checking out the Mario Classroom web app. While I have used this in my classroom, I would still classify this as being in the alpha stage. There are still some bugs that I am aware of. I am not currently planning on updating this version of the app. In the future, I plan on making a more robust system that will run on a server instead of simply using JavaScript. However, it may be a while until I can make that. I
+Thank you for checking out the Mario Classroom web app. While I have used this in my classroom, I would still classify this as being in the alpha stage. There are still some bugs that I am aware of. I am not currently planning on updating this version of the app. In the future, I plan on making a more robust system that will run on a server instead of simply using JavaScript. However, it may be a while until I can make that. 
 
-f you want to leave feedback or suggestions, please use the Issues tap at the top of the page. Then click New issue unless you see the issue listed.
+
+I made this app mostly for my own use. While it is a simple app, it may not be intutitive for people who are not familiar with JSON and basic web development. Hopefully, the following instructions are succificient for you to use the app. 
+
+Some features I may consider adding if there are demand for them: a reset button for the timer and a way to upload and download agendas and bell schedules.
+
+If you want to leave feedback or suggestions, please use the Issues tap at the top of the page. Then click New issue unless you see the issue listed.
 
 Demo: https://mrgeyer.github.io/Mario-Classroom/
 
@@ -62,7 +67,9 @@ Save periodically throughout the day in case the computer crashes.
 
 To add seating charts, create an image of your seating chart and save it as a png. It should be named period#.png and saved in the seatingCharts folder in the images folder. i.e. period1.png, period2.png, etc.
 
-To add a hint for the bellwork to display with the seating chart, save it as hint.png in the images/seatingCharts folder.
+To add a hint for the bellwork to display with the seating chart, save it as hint.png in the images/seatingCharts folder
+
+To use the seating chart, click the SC buttons at the top of the screen. Click Hide Seating Chart to hide the seating chart and hint. The Get Period button on the timer will also automatically display the seating chart.
 
 ## Timer Feature
 
@@ -72,7 +79,7 @@ Make sure to maintain the JSON format.
 ### Bell Schedule
 - The bell schedule is an array called BellSchedule
 - It should start with <code>BellSchedule = [</code>
-- and end with with ];
+- and end with with <code>];</code>
 - Start each entry for each period with { and end each entry with a },.
 - Enter the period after period.
 - Enter the hour the period starts after SH:.
@@ -104,5 +111,63 @@ It should look like this:
   EM: 20
 }];
   </code>
+  
+  ### Agenda
+- The agenda is an array called agenda
+- It should start with <code>agenda  = [</code>
+- and end with with <code>];</code>
+- Start each entry for each period with { and end each entry with a },.
+- Enter your agenda items after agenda:.
+- Enter the number of minutes for each agenda item after min: and const:.
+- The const property is for resetting the minutes if the break button feature is used.
+- The initial property is not currently being used. It can be ommitted. 
+-
+It should look like this:
+<code>
+agenda = [{
+    mode: "Boss Battle Quiz",
+    min: 20,
+    const: 20,
+    initial: "BW"
+  },
+  {
+    mode: "Cadence",
+    min: 2,
+    const: 2,
+    initial: "N"
+  },
+  {
+    mode: "We do",
+    min: 8,
+    const: 8,
+    initial: "N"
+  },
+  {
+    mode: "You Try",
+    min: 4,
+    const: 4,
+    initial: "B"
+  },
+  {
+    mode: "Gimkit",
+    min: 15,
+    const: 15,
+    initial: "N"
+  },
+  {
+    mode: "Cadence",
+    min: 3,
+    const: 3,
+    initial: "B"
+}];
+  </code>
+  
+## Using the timer
+
+After you enter your bell schedule and agenda, you should be able to run the timer by clicking Get Period. As long as your clock settings on your browser match your bell schedule, it should start the timer during your class period. You can stop the timer by clicking stop. To resume the timer at the pace of your agenda, click Get Period to start it again. To start where you left off, click start. 
+
+If Get Period does not work, then you can click Start to use the timer. However, if you need to reset the timer, you may need to refresh the Browser. Make sure you save your Spreadsheet Log by clicking Spreadsheet Log and then Export before refreshing. Then you will need to load the Spreadsheet Log again by clicking Choose File and selecting your file (If you downloaded it, it should be in your downloads folder). Then, click Import. Then, click Show Buttons to update the buttons. Then you can click Start again. 
+
+If this becomes an issue for you, please click the Issue tab and share your issue with it and I will consider making a Reset button for the timer. 
 
 
