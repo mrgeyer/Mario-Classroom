@@ -1,6 +1,6 @@
 height = 64;
 var buttWidth = 32;
-
+reward = " is on the couch today.";
 
 agenda = [{
     mode: "Boss Battle Quiz",
@@ -798,7 +798,7 @@ function couch(p) {
   if (couchRoster.length > 0) {
    personOnCouch = randomElementOf(couchRoster);
   } 
-  output += personOnCouch + " is on the couch today.";
+  output += personOnCouch + reward;
 
   output += '</div>'; 
   document.getElementById("couch").innerHTML = output;
