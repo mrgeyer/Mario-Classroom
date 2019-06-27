@@ -7,7 +7,7 @@ Some features I may consider adding if there are demand for them: a reset button
 
 Note: Currently, the blackboard does not work in Chrome unless you set up a localhost server on your computer, and the download button does not work in Firefox. 
 
-If you want to leave feedback or suggestions, please use the Issues tap at the top of the page. Then click New issue unless you see the issue listed.
+If you want to leave feedback or suggestions, please use the <a href=https://github.com/mrgeyer/Mario-Classroom/issues">Issues tab</a> at the top of the page. Then click New issue unless you see the issue listed.
 
 Demo: https://mrgeyer.github.io/Mario-Classroom/
 
@@ -170,7 +170,7 @@ After you enter your bell schedule and agenda, you should be able to run the tim
 
 If Get Period does not work, then you can click Start to use the timer. However, if you need to reset the timer, you may need to refresh the Browser. Make sure you save your Spreadsheet Log by clicking Spreadsheet Log and then Export before refreshing. Then you will need to load the Spreadsheet Log again by clicking Choose File and selecting your file (If you downloaded it, it should be in your downloads folder). Then, click Import. Then, click Show Buttons to update the buttons. Then you can click Start again. 
 
-If this becomes an issue for you, please click the Issue tab and share your issue with it and I will consider making a Reset button for the timer. 
+If this becomes an issue for you, please click the <a href=https://github.com/mrgeyer/Mario-Classroom/issues">Issues tab</a> and share your issue with it and I will consider making a Reset button for the timer. 
 
 ## Set up email feature
 - Ask your administrators about email policies before using this feature.
@@ -204,4 +204,4 @@ If this becomes an issue for you, please click the Issue tab and share your issu
 - To erase a portion of the screen, click the small e. Then click a color to draw again.
 - To erase the whole screen, click the large E.
 
-That should be all the features. If you have any questions, submit them using the Issues tab.
+That should be all the features. If you have any questions, submit them using the <a href=https://github.com/mrgeyer/Mario-Classroom/issues">Issues tab</a>.
