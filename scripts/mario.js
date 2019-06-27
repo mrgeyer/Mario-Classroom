@@ -1,10 +1,9 @@
-height = 16; // button height
-var buttWidth = 8; // button width
+height = 64;
+var buttWidth = 32;
 
 
-// enter agenda items here
 agenda = [{
-    mode: "Boss Battle Quiz.",
+    mode: "Boss Battle Quiz",
     min: 20,
     const: 20,
     initial: "BW"
@@ -39,6 +38,7 @@ agenda = [{
     const: 3,
     initial: "B"
 }];  
+  couchput = "";
 
 // enter email addresses to e-mail dispcipline report here.
 emailaddresses = "";
@@ -51,14 +51,14 @@ subject = "";
 body = "";
 
 
-// enter bell schedule here
+
 // Timer Variables
 bellSchedule = [{
   period: 1,
-  SH: 8, // start hour
-  SM: 5, // start minute
-  EH: 8, // end hour
-  EM: 55 // end minute
+  SH: 8,
+  SM: 5,
+  EH: 8,
+  EM: 55
 },
 {
   period: 3,
@@ -66,8 +66,15 @@ bellSchedule = [{
   SM: 50,
   EH: 10,
   EM: 40
-  }
+  },
+ {
+  period: 5,
+  SH: 11,
+  SM: 30,
+  EH: 12,
+  EM: 20
 }];
+
 agendaItem = 0;
 
 periodIndex = 0;
