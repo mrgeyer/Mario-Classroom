@@ -9,6 +9,12 @@
 <p class="marg">
 <span id="seatingChartButton"></span> <span id="butt2"></span>
 <button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
+<span id="test" class="bellwork"></span>
+  <span id="timerButts">
+    <button  onclick="getPeriod()">Get Period</button>
+    <button  onclick="startTimer()">Start</button>
+  </span>
+    <button onclick="stop()">Stop</button> 
 </p>
 <table>
 <tr>
@@ -16,12 +22,7 @@
   <td>
 <p class="marg">
 <span id="timer">8:00</span>
-<span id="test"></span>
-  <span id="timerButts">
-    <button  onclick="getPeriod()">Get Period</button>
-    <button  onclick="startTimer()">Start</button>
-  </span>
-    <button onclick="stop()">Stop</button> 
+
 </p>
     
   
@@ -30,7 +31,8 @@
 <p id="couch"></p>
 </td></tr>
 <tr><td>
-<canvas id ="BB" width="675" height="400" data-processing-sources="scripts/draw.js"></canvas><br><br>
+<script src="scripts/processing.js"></script>
+<canvas id ="BB" width="675" height="400" data-processing-sources="scripts/draw.pde"></canvas><br><br>
 </td>
 <td>
 <p id="redCoins"></p>
@@ -67,7 +69,8 @@ onclick="document.getElementById
 
 style="width:300px;height:100px"></textarea>
 
-  <script src="mario.js"></script>
-<script src="processing.min.js"></script>
+ 
+  <script src="/scripts/mario.js"></script>
+
 
 </body>

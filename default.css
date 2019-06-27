@@ -9,13 +9,15 @@ body {
   background-color: black;
   color: white;
   font-family: times;
-  font-size: 16px;    
+  font-size: 32px;    
 }
 
-
-
-
-
+#timer {
+  background-color: black;
+  color: red;
+  font-family: monospace;
+  font-size: 32px;    
+}
 
 .marg {
   margin: 5px;
