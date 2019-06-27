@@ -1,3 +1,7 @@
+Thank you for checking out the Mario Classroom web app. While I have used this in my classroom, I would still classify this as being in the alpha stage. There are still some bugs that I am aware of. I am not currently planning on updating this version of the app. In the future, I plan on making a more robust system that will run on a server instead of simply using JavaScript. However, it may be a while until I can make that. I
+
+f you want to leave feedback or suggestions, please use the Issues tap at the top of the page. Then click New issue unless you see the issue listed.
+
 Demo: https://mrgeyer.github.io/Mario-Classroom/
 
 # Getting Started
@@ -7,6 +11,10 @@ Demo: https://mrgeyer.github.io/Mario-Classroom/
 Click Clone or Download and then Download ZIP. Extract the ZIP file.
 
 Note: Currently, the blackboard does not work in Chrome, and the download button does not work in Firefox. 
+
+If you have a Github account, you could also fork it and then use Github.io. However, you may need to change the code to load the seating chart images on your computer if you do not want them to be public. 
+
+If you do not want to use the timer or the seating chart features, you can use the github.io page: https://mrgeyer.github.io/Mario-Classroom/
 
 ## Run
 
@@ -47,4 +55,54 @@ Click Choose File and select your file (If you downloaded it, it should be in yo
 To save, click Spreadsheet Log and then click Save Log. 
 
 Note: If you're using FireFox, you may have to copy the text box and paste it into a text editor. Save it as a .csv file if you want to open it in a spreadsheet program. It will still work in Mario Classroom if you save it as a text file.
+
+Save periodically throughout the day in case the computer crashes.
+
+## Seating Chart
+
+To add seating charts, create an image of your seating chart and save it as a png. It should be named period#.png and saved in the seatingCharts folder in the images folder. i.e. period1.png, period2.png, etc.
+
+To add a hint for the bellwork to display with the seating chart, save it as hint.png in the images/seatingCharts folder.
+
+## Timer Feature
+
+To use the timer feature, you need to edit the agenda and bell schedule in the mario.js file in the scripts folder.
+Make sure to maintain the JSON format. 
+
+### Bell Schedule
+- The bell schedule is an array called BellSchedule
+- It should start with <code>BellSchedule = [</code>
+- and end with with ];
+- Start each entry for each period with { and end each entry with a },.
+- Enter the period after period.
+- Enter the hour the period starts after SH:.
+- Enter the minute the period starts after SM:.
+- Note: You may want to set the start time to be when the last period ends or when the passing period begins. 
+- Enter the hour the period ends after EH:.
+- Enter the minute the period ends after EM.:
+It should look like this:
+<code>
+  bellSchedule = [{
+  period: 1,
+  SH: 8,
+  SM: 5,
+  EH: 8,
+  EM: 55
+},
+{
+  period: 3,
+  SH: 9,
+  SM: 50,
+  EH: 10,
+  EM: 40
+  },
+ {
+  period: 5,
+  SH: 11,
+  SM: 30,
+  EH: 12,
+  EM: 20
+}];
+  </code>
+
 
