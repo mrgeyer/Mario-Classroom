@@ -42,9 +42,7 @@ agenda = [{
 
 // enter email addresses to e-mail dispcipline report here.
 emailaddresses = "";
-
 emailaddresses += "";
-
 // enter subject for discipline report email here
 subject = "";
 // enter message for discipline report email here.
@@ -52,7 +50,6 @@ body = "";
 
 
 // enter bell schedule here
-// Timer Variables
 bellSchedule = [{
   period: 1,
   SH: 8, // start hour
@@ -66,23 +63,10 @@ bellSchedule = [{
   SM: 50,
   EH: 10,
   EM: 40
-  },
- {
-  period: 5,
-  SH: 11,
-  SM: 30,
-  EH: 12,
-  EM: 20
-     },
- {
-  period: 7,
-  SH: 13,
-  SM: 50,
-  EH: 14,
-  EM: 45
 }];
-agendaItem = 0;
 
+// Timer Variables
+agendaItem = 0;
 periodIndex = 0;
 var seconds = agenda[agendaItem].min * 60;
 var mode = agenda[agendaItem].mode;
