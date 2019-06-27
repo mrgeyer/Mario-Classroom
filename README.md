@@ -1,4 +1,4 @@
-Thank you for checking out the Mario Classroom web app. This app was inpsired by Mark Roper's <a href="https://www.youtube.com/watch?v=9vJRopau0g0">Super Mario Effect</a> video. I wanted to find a way to make my class more like a Super Mario game. It uses elements from other projects I have made such as <ahttps://github.com/methodsOfMath/classtris"> href="https://github.com/methodsOfMath/classtris">Classtris</a> and a <a href="https://github.com/methodsOfMath/classtris">timer</a> I made as part of the <a href="freecodecamp.org">Free Code Camp</a> training.
+Thank you for checking out the Mario Classroom web app. This app was inpsired by Mark Roper's <a href="https://www.youtube.com/watch?v=9vJRopau0g0">Super Mario Effect</a> video. I wanted to find a way to make my class more like a Super Mario game. It uses elements from other projects I have made such as <a href="https://github.com/methodsOfMath/classtris"> href="https://github.com/methodsOfMath/classtris">Classtris</a> and a <a href="https://github.com/methodsOfMath/classtris">timer</a> I made as part of the <a href="freecodecamp.org">Free Code Camp</a> training.
 
 While I have used this in my classroom, I would still classify this as being in the alpha stage. There are still some bugs that I am aware of. I am not currently planning on updating this version of the app. In the future, I plan on making a more robust system that will run on a server instead of simply using JavaScript. However, it may be a while until I can make that. 
 
@@ -209,6 +209,9 @@ If this becomes an issue for you, please click the <a href="https://github.com/m
 
 That should be all the features. If you have any questions, submit them using the <a href="https://github.com/mrgeyer/Mario-Classroom/issues">Issues tab</a>.
 
+### Credits
+ 
 Uses processing.js for the blackboard. http://processingjs.org/
 
 Uses the method shared by This Could Be Better for the file loading: https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
+
