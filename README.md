@@ -47,7 +47,7 @@ You only need to fill out Period, Student, First Name, Last Name, Power Up, live
 - Enter 0 for incidents and tardies unless the student has previous incidents or tardies. These are for the discipline report.
 - Enter 0 for red coins unless the class has earned red coins already. The red coins are for class wide rewards. However, red coins are tracked by individual students because of the set up of the data system. These will be added up, so only add it to one student's total.
 
-You can leave the other fields blank. These are mostly for the discipline report. Fill out Sex, Grade, and Special Programs if you want those to populate on the discipline report. Seperate special programs using a colon: i.e. band, chior, basketball.
+You can leave the other fields blank. These are mostly for the discipline report. Fill out Sex, Grade, and Special Programs if you want those to populate on the discipline report. Seperate special programs using a semicolon: i.e. band; chior; basketball.
 
 The calculator number field is not being used at this time, but it is on the spreadsheet in case I want to add that feature later. This could be used for a pick a random calculator number feature. If you assigned calculator numbers, you can enter them here, but it is not necessary.
 
