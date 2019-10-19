@@ -121,7 +121,7 @@ It should look like this:
 - It should start with <code>agenda  = [</code>
 - and end with with <code>];</code>
 - Start each entry for each period with { and end each entry with a },.
-- Enter your agenda items after agenda:.
+- Enter your agenda items after <code>mode:</code>.
 - Enter the number of minutes for each agenda item after min: and const:.
 - The const property is for resetting the minutes if the break button feature is used.
 - The initial property is not currently being used. It can be ommitted. 
