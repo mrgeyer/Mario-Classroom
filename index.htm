@@ -1,65 +1,95 @@
 <head>
   <title>Mario Classroom</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
 <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
 
+
+<div>This is a classroom management tool based on Super Mario Bros. To learn more about it, visit the <a href="https://github.com/mrgeyer/Mario-Classroom" target="_blank">Github repo</a>.
 <!-- start timer -->
 
-<p class="marg">
+<div class="marg">
 <span id="seatingChartButton"></span> <span id="butt2"></span>
+  
+  <!--
 <button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
-
+  -->
+  
   <span id="timerButts">
     <button  onclick="getPeriod()">Get Period</button>
     <button  onclick="startTimer()">Start</button>
   </span>
     <button onclick="stop()">Stop</button> 
-</p>
-<table>
-<tr>
-  <td><p id="seatingChart"></p></td>
-  <td>
-<p class="marg">
-<span id="timer">8:00</span>
-<span id="test" class="bellwork"></span>
+</div>
+    <div id="imagebuttons" class="w3-row">
+    <div id="imagebuttons.week" class="w3-col m3 l2">
+      <button onclick="setImageDate(1)">M</button> 
+      <button onclick="setImageDate(2)">Tu</button> 
+      <button onclick="setImageDate(3)">W</button> 
+      <button onclick="setImageDate(4)">Th</button> 
+      <button onclick="setImageDate(5)">F</button> 
+    </div> 
+    <div id="imagebuttons.spiral" class="w3-col m3 l2">
+      <button onclick="setImageDate(11)">SM</button> 
+      <button onclick="setImageDate(12)">STu</button> 
+      <button onclick="setImageDate(13)">SW</button> 
+      <button onclick="setImageDate(14)">STh</button> 
+      <button onclick="setImageDate(15)">SF</button> 
+    </div>
+        <div id="imagebuttonsnav" class="w3-col m3 l2">
+      <button onclick="firstImage()">|ᐊᐊ</button>    
+      <button onclick="previousImage()">ᐊ</button> 
+      <button onclick="nextImage()">ᐅ</button> 
+    </div>       
+  </div>  
 
-</p>
+
+
+
     
   
 <!-- end timer -->
 <p id="demo"></p>
 <p id="couch"></p>
-</td></tr>
-<tr><td>
-<script src="scripts/processing.js"></script>
-<canvas id ="BB" width="675" height="400" data-processing-sources="scripts/draw.pde"></canvas><br><br>
-</td>
-<td>
-<p id="redCoins"></p>
-<p id="buttons"></p>
+<div class="w3-row">
+  <div id="lessonimages" class="w3-col m8 l9">
+    
+      <div id="seatingChart"></div>
+    <img src="http://images.clipartpanda.com/i-love-math-pictures-i-love-math-131540963456.png" class="img">
+<!-- blackboard
+<script src="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/processing.js"></script>
+<canvas id ="BB" width="675" height="400" data-processing-sources="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/draw.pde"></canvas><br><br>
+-->
+  </div>
+  
+  <div id="behavior" class="w3-col m4 l3">
+   
+    <div><span id="timer">8:00</span>
+      <span id="currentagenda" </span></div>
+    <div id="com" class="champs">C: Voice Level 0</div>
+    <div id="help" class="champs">H: Raise hand</div>   
+    <div id="act" class="champs">A: Do your work</div>
+    <div id="movement" class="champs">M: Stay seated</div>
+    <div id="participation" class="champs">P: Finish work</div> 
+    
+    
+    <p id="redCoins"></p>
+    <p id="buttons"></p>
+  </div>  
+</div>
 
 
 
-
-</td></tr></table>
-<p>
+<div id="loadingzone">
   <input type="file" id="fileToLoad"> 
  <button onClick='loadSpreadSheet()'>Import</button> 
  <button onClick='start()'>Show Buttons</button> 
   <br \>
   
-<button class="CTbutton" type="button" 
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='none'">Hide</button>
 
-onclick="document.getElementById
-
-('inputTextToSave').style.display='none'">Hide</button>
-
-<button class="CTbutton" type="button" 
-
-onclick="document.getElementById
-
-('inputTextToSave').style.display='block'">Show</button>
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='block'">Show</button>
   
 <button onClick='exportData()'>Spreadsheet Log</button>
 <button class="CTbutton" onclick="saveTextAsFile()">Save Log</button>
@@ -69,7 +99,7 @@ onclick="document.getElementById
 <textarea id="inputTextToSave" 
 
 style="width:300px;height:100px"></textarea>
-
+</div>
  
   <script src="scripts/mario.js"></script>
 
