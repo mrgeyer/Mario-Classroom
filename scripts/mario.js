@@ -1,5 +1,5 @@
 height = 64;
-imageDay = 1;
+imageDate = 1;
 imageNumber = 1;
 var buttWidth = 32;
 
@@ -976,18 +976,35 @@ function getPeriod() {
 
 hideSeatingChart();
 
-function setImageDage(n) {
+function setImageDate(n) {
   imageDate = n;
-  let output = '<img src="images/lessons/' + n + '/0.png" class="img">';
+  imageNumber = 1;
+  let output = '<img src="images/lessons/' + n + '/1.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
 
 function firstImage() {
-  let output = '<img src="images/lessons/' + imageDate + '/0.png" class="img">';
+  imageNumber = 1;
+  let output = '<img src="images/lessons/' + imageDate + '/1.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
 
-function firstImage() {
-  let output = '<img src="images/lessons/' + imageDate + '/0.png" class="img">';
+function nextImage() {
+  imageNumber += 1;
+  let output = '<img src="images/lessons/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
+
+function previousImage() {
+  if (imageNumber > 1) {
+    imageNumber -= 1;
+  }
+  let output = '<img src="images/lessons/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
+  document.getElementById("lessonimages").innerHTML = output;  
+}
+
+
