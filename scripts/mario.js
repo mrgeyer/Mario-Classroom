@@ -927,6 +927,13 @@ function stop() {
   document.getElementById('timerButts').style.display='inline';
 }
 
+function reset() {
+  agendaItem = 0;
+  mode = agenda[0].mode;
+  seconds = (agenda[0].min)*60;
+  showTime();
+}
+
 function getPeriod() {
   for(let i = 0; i < agenda.length; i++) {
     if (agenda[i].mode === "Break") {
