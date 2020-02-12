@@ -5,7 +5,7 @@ body {
   font-size: 12px;    
 }
 
-.bellwork {
+#currentagenda {
   background-color: black;
   color: white;
   font-family: times;
@@ -16,8 +16,18 @@ body {
   background-color: black;
   color: red;
   font-family: monospace;
-  font-size: 32px;    
+  font-size: 32px;
+  margin: 10px;
 }
+
+.champs {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+  margin: 10px;
+}
+
 
 .marg {
   margin: 5px;
@@ -37,9 +47,11 @@ button {
   border: none;
 }
 
+#imagebuttons, #loadingArea {
+  margin: 10px;
+  font-size: 20px;
+}
 
-
-#seatChartImg {
-  width=100%;
-
+.img {
+  width: 100%;
 }
