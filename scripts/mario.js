@@ -1,10 +1,13 @@
-height = 64;
+height = 32;
 imageDate = 1;
 imageNumber = 1;
-var buttWidth = 32;
+var buttWidth = 16;
 
 
-agenda = [{
+agenda = [
+/*
+{
+
     mode: "Brain Dump",
     min: 10,
     C: 0,
@@ -13,6 +16,7 @@ agenda = [{
     M: "Stay seated",
     P: "Finish PEMDAS, place value, gallon man, and multiplication chart."
   },
+*/
   {
     mode: "Transition",
     min: 1,
@@ -41,7 +45,7 @@ agenda = [{
     P: "Raise hand. Answer basic math questions as group."
   }
 ];  
-  couchput = "";
+  //couchput = "";
 
 // enter email addresses to e-mail dispcipline report here.
 emailaddresses = "";
@@ -925,13 +929,6 @@ function stop() {
   running = false;
   clearInterval(countdown);
   document.getElementById('timerButts').style.display='inline';
-}
-
-function reset() {
-  agendaItem = 0;
-  mode = agenda[0].mode;
-  seconds = (agenda[0].min)*60;
-  showTime();
 }
 
 function getPeriod() {
