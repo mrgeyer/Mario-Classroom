@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
+<!-- paste codepin code here -->
 
 <!-- start timer -->
 
@@ -15,10 +16,11 @@
   -->
   
   <span id="timerButts">
-    <button  onclick="getPeriod()">Get Period</button>
+   <!-- <button  onclick="getPeriod()">Get Period</button> -->
     <button  onclick="startTimer()">Start</button>
   </span>
     <button onclick="stop()">Stop</button> 
+  <button onclick="reset()">Reset</button>
 </div>
     <div id="imagebuttons" class="w3-row">
     <div id="imagebuttons.week" class="w3-col m3 l2">
@@ -36,9 +38,9 @@
       <button onclick="setImageDate(55)">SF</button> 
     </div>
         <div id="imagebuttonsnav" class="w3-col m3 l2">
-      <button onclick="firstImage()">|ᐊᐊ</button>    
-      <button onclick="previousImage()">ᐊ</button> 
-      <button onclick="nextImage()">ᐅ</button> 
+      <button onclick="firstImage()"> |<< </button>    
+      <button onclick="previousImage()"> < </button> 
+      <button onclick="nextImage()"> > </button> 
     </div>       
   </div>  
 
@@ -54,7 +56,7 @@
   <div id="lessonimages" class="w3-col m8 l9">
     
       <div id="seatingChart"></div>
-    <img src="http://images.clipartpanda.com/i-love-math-pictures-i-love-math-131540963456.png" class="img">
+    <img src="images/marioEffect.png" class="img">
 <!-- blackboard
 <script src="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/processing.js"></script>
 <canvas id ="BB" width="675" height="400" data-processing-sources="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/draw.pde"></canvas><br><br>
@@ -98,6 +100,8 @@
 
 style="width:300px;height:100px"></textarea>
 </div>
+
+<!-- end codepin code -->
  
   <script src="scripts/mario.js"></script>
 
