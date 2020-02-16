@@ -1,6 +1,7 @@
 height = 32;
 imageDate = 1;
 imageNumber = 1;
+imageWeek = 1;
 var buttWidth = 16;
 
 
@@ -983,21 +984,21 @@ hideSeatingChart();
 function setImageDate(n) {
   imageDate = n;
   imageNumber = 1;
-  let output = '<img src="images/lessons/' + n + '/1.png" class="img" alt="';
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + n + '/1.png" class="img" alt="';
   output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
 
 function firstImage() {
   imageNumber = 1;
-  let output = '<img src="images/lessons/' + imageDate + '/1.png" class="img" alt="';
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/1.png" class="img" alt="';
   output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
 
 function nextImage() {
   imageNumber += 1;
-  let output = '<img src="images/lessons/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
   output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
 }
@@ -1006,9 +1007,33 @@ function previousImage() {
   if (imageNumber > 1) {
     imageNumber -= 1;
   }
-  let output = '<img src="images/lessons/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
   output += imageDate + ' ,'+ imageNumber + '">';
   document.getElementById("lessonimages").innerHTML = output;  
+}
+
+function reset() {
+  agendaItem = 0;
+  mode = agenda[0].mode;
+  seconds = (agenda[0].min)*60;
+  showTime();
+}
+
+function resetLives(n) {
+  let classNumber = 0;
+  for (let i = 0; i < classes.length; i++) {
+	if (classes[i].period === n) {
+           classNumber = i;   
+        }
+  }
+  for (let i = 0; i < classes[classNumber].students.length; i++) {
+    classes[classNumber].students[i].lives = 5;
+  }
+  loadClass(classNumber);
+}
+
+function loadWeek(n) {
+  imageWeek = n;
 }
 
 
