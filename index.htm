@@ -8,7 +8,9 @@
 
 <!-- start timer -->
 
-<div class="marg">
+
+    <div id="imagebuttons" class="w3-row">
+<div class="w3-col m3 l2">
 <span id="seatingChartButton"></span> <span id="butt2"></span>
   
   <!--
@@ -22,7 +24,6 @@
     <button onclick="stop()">Stop</button> 
   <button onclick="reset()">Reset</button>
 </div>
-    <div id="imagebuttons" class="w3-row">
     <div id="imagebuttons.week" class="w3-col m3 l2">
       <button onclick="setImageDate(1)">M</button> 
       <button onclick="setImageDate(2)">Tu</button> 
@@ -35,6 +36,7 @@
       <button onclick="setImageDate(52)">STu</button> 
       <button onclick="setImageDate(53)">SW</button> 
       <button onclick="setImageDate(54)">STh</button> 
+
     </div>
         <div id="imagebuttonsnav" class="w3-col m3 l2">
       <button onclick="firstImage()"> |<< </button>    
@@ -66,15 +68,16 @@
    
     <div><span id="timer">8:00</span>
       <span id="currentagenda" </span></div>
-    <div id="com" class="champs">C: Voice Level 0</div>
-    <div id="help" class="champs">H: Raise hand</div>   
-    <div id="act" class="champs">A: Do your work</div>
-    <div id="movement" class="champs">M: Stay seated</div>
-    <div id="participation" class="champs">P: Finish work</div> 
+ 
     
     
     <p id="redCoins"></p>
     <p id="buttons"></p>
+    <div id="com" class="champs">C: Voice Level 0</div>
+    <div id="help" class="champs">H: Raise hand</div>   
+    <div id="act" class="champs">A: Do your work</div>
+    <div id="movement" class="champs">M: Stay seated</div>
+    <div id="participation" class="champs">P: Finish work</div>
   </div>  
 </div>
 
@@ -99,10 +102,16 @@
 
 style="width:300px;height:100px"></textarea>
 </div>
-
+<div>
+<button class="CTbutton" type="button" onclick="resetLives(1)"> Reset Lives 1 </button>
+<button class="CTbutton" type="button" onclick="resetLives(2)"> Reset Lives 2 </button>
+<button class="CTbutton" type="button" onclick="resetLives(3)"> Reset Lives 3 </button>
+</div>
 <!-- end codepin code -->
  
   <script src="scripts/mario.js"></script>
-
-
+<div>
+<button onclick="loadWeek(1)"> Week 1 </button>
+<button onclick="loadWeek(2)"> Week 2 </button>
+</div>
 </body>
