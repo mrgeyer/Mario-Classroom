@@ -5,19 +5,29 @@ body {
   font-size: 12px;    
 }
 
-.bellwork {
+#currentagenda {
   background-color: black;
   color: white;
   font-family: times;
-  font-size: 32px;    
+  font-size: 16px;    
 }
 
 #timer {
   background-color: black;
   color: red;
   font-family: monospace;
-  font-size: 32px;    
+  font-size: 16px;
+  margin: 10px;
 }
+
+.champs {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  font-size: 12px;
+  margin: 10px;
+}
+
 
 .marg {
   margin: 5px;
@@ -37,9 +47,15 @@ button {
   border: none;
 }
 
+#imagebuttons, #loadingArea {
+  margin: 10px;
+  font-size: 20px;
+}
 
+#lessonimages {
+  background-color: #FFFFFF;
+}
 
-#seatChartImg {
-  width=100%;
-
+.img {
+  width: 100%;
 }

@@ -1,44 +1,52 @@
-height = 64;
-var buttWidth = 32;
-reward = " is on the couch today.";
+height = 32;
+imageDate = 1;
+imageNumber = 1;
+imageWeek = 1;
+var buttWidth = 16;
 
-agenda = [{
-    mode: "Boss Battle Quiz",
-    min: 20,
-    const: 20,
-    initial: "BW"
+
+agenda = [
+/*
+{
+
+    mode: "Brain Dump",
+    min: 10,
+    C: 0,
+    H: "Raise hand",
+    A: "Independent work",
+    M: "Stay seated",
+    P: "Finish PEMDAS, place value, gallon man, and multiplication chart."
+  },
+*/
+  {
+    mode: "Transition",
+    min: 1,
+    C: 0,
+    H: "Raise hand",
+    A: "Retrieve spiral from your bin. Begin working.",
+    M: "Retrieve spiral from your bin. Then sit quietly",
+    P: "Retrieve spiral from your bin. Begin working."
   },
   {
-    mode: "Cadence",
-    min: 2,
-    const: 2,
-    initial: "N"
+    mode: "Spiral Review",
+    min: 10,
+    C: 1,
+    H: "Ask partner. Raise hand",
+    A: "Work with partner on spiral review. ",
+    M: "Stay seated",
+    P: "Discuss spiral review questions with partner."
   },
   {
-    mode: "We do",
-    min: 8,
-    const: 8,
-    initial: "N"
-  },
-  {
-    mode: "You Try",
-    min: 4,
-    const: 4,
-    initial: "B"
-  },
-  {
-    mode: "Gimkit",
-    min: 15,
-    const: 15,
-    initial: "N"
-  },
-  {
-    mode: "Cadence",
-    min: 3,
-    const: 3,
-    initial: "B"
-}];  
-  couchput = "";
+    mode: "Spiral Boardwork",
+    min: 10,
+    C: 0,
+    H: "Raise hand",
+    A: "Listen, Watch, Work along or check work",
+    M: "Stay seated",
+    P: "Raise hand. Answer basic math questions as group."
+  }
+];  
+  //couchput = "";
 
 // enter email addresses to e-mail dispcipline report here.
 emailaddresses = "";
@@ -55,20 +63,20 @@ body = "";
 // Timer Variables
 bellSchedule = [{
   period: 1,
-  SH: 8,
+  SH: 20,
   SM: 5,
   EH: 8,
   EM: 55
 },
 {
-  period: 3,
+  period: 2,
   SH: 9,
   SM: 50,
   EH: 10,
   EM: 40
   },
  {
-  period: 5,
+  period: 3,
   SH: 11,
   SM: 30,
   EH: 12,
@@ -175,7 +183,7 @@ function start() {
   let output = "";
   for (let i = 0; i < classes.length; i++) {
     output += "<button onClick='loadClass(" + i + ")'> " + classes[i].period + " </button>";
-   output += "<button onClick='couch(" + i + ")'> C" + classes[i].period + " </button>";
+   // output += "<button onClick='couch(" + i + ")'> C" + classes[i].period + " </button>";
   }
   butt2.innerHTML = output;
 }
@@ -208,17 +216,20 @@ function loadClass(n) {
       
       
     } else {
- 
+ // item box
        output += " <button class='picButt' onClick='item(" + n + ", " + i + ")'>";
        output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
        output += "Classroom/master/images/buttons/";
        output += student.lastItem + ".png' height="+ height + "></button> ";
  // redcoins
+   /*   
        output += " <button class='picButt' onClick='redCoin(" + n + ", " + i + ")'>";
        output += "<img src='";
-       //output += "https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+       output += "https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
        output += "images/buttons/";
        output += "redCoin.png' height="+ height + "></button> ";
+     */
+    // Goomba - No Materials  
       /*
       output += " <button class='picButt' onClick='enemy(" + n + ", "  + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
@@ -226,9 +237,11 @@ function loadClass(n) {
       output += height + 'alt="No materials."></button> ';
       */
 // red turtle = tardy
+     /* 
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 4)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/redTurtle.png' height=" + height + "></button>  ";
+      */
 // green turtle = off task
       output += " <button class='picButt' onClick='enemy(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
@@ -238,27 +251,37 @@ function loadClass(n) {
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/beetle.png' height=" + height + "></button>  ";    
       */
-// lava = off task
+// lava = class disruption
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/lava.png' height=";
       output += height + "></button>  ";
+      
+      // water
 /* 
       output += " <button class='picButt' onClick='pit(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/water.png' height=";
       output += height + "></button>  ";
 */    
+      // Reset button
       /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 1)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/reset.jpg' height=";
       output += height + " width=" + buttWidth + "></button>  ";
       */
+      
+      
+      // Power  button
+      /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 2)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
       output += "Classroom/master/images/buttons/power.jpg' height=";
       output += height + " width=" + buttWidth + "></button>  ";
+    */
+    
+      // SNES Power button
       /*
       output += " <button class='picButt' onClick='resetButt(" + n + ", " + i + ", 3)'>";
       output += "<img src='https://raw.githubusercontent.com/mrgeyer/Mario-";
@@ -269,12 +292,15 @@ function loadClass(n) {
     output += "</td></tr>";
   }
   buttons.innerHTML = output;
+  // Red Coins
+  /*
   let redCoinOutput = "<img src ='";
-  //redCoinOutput +="/https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+   redCoinOutput += "https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
    redCoinOutput += "images/buttons/";
    redCoinOutput += "redCoin.png' height="+ height + "></button> ";
    redCoinOutput += " x " + redCoins;
   document.getElementById("redCoins").innerHTML = redCoinOutput;
+  */
 }
 
 function item(p,s){
@@ -798,15 +824,19 @@ function couch(p) {
   if (couchRoster.length > 0) {
    personOnCouch = randomElementOf(couchRoster);
   } 
-  output += personOnCouch + reward;
+  output += personOnCouch + " is on the couch today.";
 
   output += '</div>'; 
   document.getElementById("couch").innerHTML = output;
 }
 
 function showSeatingChart(p) {
-  output = '<img id="seatChartImg" src ="images/seatingCharts/period' + classes[p].period + '.png" width=100%>';
-  output += '<br><img id="hintImg" src ="images/seatingCharts/hint.png" width=100%>';
+  output = '<img id="seatChartImg" src ="';
+  output +="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+  output += 'images/seatingCharts/period' + classes[p].period + '.png" width=100%>';
+  output += '<br><img id="hintImg" src ="';
+  output +="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/";
+  output += 'images/seatingCharts/hint.png" width=100%>';
   document.getElementById('seatingChart').innerHTML = output;
   document.getElementById('seatingChart').style.display='block';
   document.getElementById('seatingChartButton').innerHTML = "<button onclick='hideSeatingChart()'>Hide Seating Chart</button>";
@@ -816,7 +846,7 @@ function hideSeatingChart() {
   document.getElementById('seatingChart').style.display='none';
   output = "";
   for (i = 0; i < classes.length; i++){
-   output += "<button onclick='showSeatingChart(" + i + ")'>SC" + 	classes[i].period + "</button>";
+   //output += "<button onclick='showSeatingChart(" + i + ")'>SC" + 	classes[i].period + "</button>";
   }
   document.getElementById('seatingChartButton').innerHTML = output;
 }
@@ -836,6 +866,7 @@ function showTime() {
     time = minute.toString() + ":" + second.toString();
   }
   document.getElementById("timer").innerHTML = time;
+  
 }
 
 function breakMinus(n) {
@@ -848,7 +879,7 @@ function breakMinus(n) {
     if (agenda[i].mode === "Break") {
       agenda[i+1].min += agenda[i].min;
       agenda[i].min = 0;
-      document.getElementById("breakButt").innerHTML = "No Break";
+      //document.getElementById("breakButt").innerHTML = "No Break";
       if (mode=='Break'){
         seconds = agenda[i].min * 60;
          showTime();
@@ -858,6 +889,11 @@ function breakMinus(n) {
 }
 
 function changeTimer() {
+  let voiceLevel = "C: Voice Level 0";
+  let help = "H: Raise hand";
+  let action = "A: Do your work";
+  let movement = "M: Stay seated";
+  let participation = "P: Work until finished"; 
   if (seconds > 0) {
     seconds -= 1;
   } else {
@@ -868,9 +904,20 @@ function changeTimer() {
     mode = agenda[agendaItem].mode;
     seconds = agenda[agendaItem].min * 60;
     timeSound.play();
+ 
     }
   }
-  document.getElementById("test").innerHTML = mode;
+    voiceLevel = "C: Voice Level " + agenda[agendaItem].C;
+    help = "H: " + agenda[agendaItem].H; 
+    action = "A: " + agenda[agendaItem].A;
+    movement = "M: " + agenda[agendaItem].M;
+    participation = "P: " + agenda[agendaItem].P;  
+  document.getElementById("currentagenda").innerHTML = mode;
+  document.getElementById("com").innerHTML = voiceLevel;
+  document.getElementById("act").innerHTML = action;
+  document.getElementById("movement").innerHTML = movement;
+  document.getElementById("participation").innerHTML = participation;
+  
   showTime();  
 }
 
@@ -921,7 +968,7 @@ function getPeriod() {
       if(parseInt(classes[j].period) == Period){
          //couch(j);
          loadClass(j);
-         showSeatingChart(j);
+         //showSeatingChart(j);
          return;
       }
     }
@@ -933,3 +980,60 @@ function getPeriod() {
 }
 
 hideSeatingChart();
+
+function setImageDate(n) {
+  imageDate = n;
+  imageNumber = 1;
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + n + '/1.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
+  document.getElementById("lessonimages").innerHTML = output;  
+}
+
+function firstImage() {
+  imageNumber = 1;
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/1.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
+  document.getElementById("lessonimages").innerHTML = output;  
+}
+
+function nextImage() {
+  imageNumber += 1;
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
+  document.getElementById("lessonimages").innerHTML = output;  
+}
+
+function previousImage() {
+  if (imageNumber > 1) {
+    imageNumber -= 1;
+  }
+  let output = '<img src="images/lessons/week' + imageWeek + '/' + imageDate + '/' + imageNumber + '.png" class="img" alt="';
+  output += imageDate + ' ,'+ imageNumber + '">';
+  document.getElementById("lessonimages").innerHTML = output;  
+}
+
+function reset() {
+  agendaItem = 0;
+  mode = agenda[0].mode;
+  seconds = (agenda[0].min)*60;
+  showTime();
+}
+
+function resetLives(n) {
+  let classNumber = 0;
+  for (let i = 0; i < classes.length; i++) {
+	if (classes[i].period === n) {
+           classNumber = i;   
+        }
+  }
+  for (let i = 0; i < classes[classNumber].students.length; i++) {
+    classes[classNumber].students[i].lives = 5;
+  }
+  loadClass(classNumber);
+}
+
+function loadWeek(n) {
+  imageWeek = n;
+}
+
+

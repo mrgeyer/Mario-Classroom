@@ -1,65 +1,97 @@
 <head>
   <title>Mario Classroom</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
 <link rel="stylesheet" type="text/css" href="default.css">
 </head>
 <body>
+<!-- paste codepin code here -->
 
 <!-- start timer -->
 
-<p class="marg">
-<span id="seatingChartButton"></span> <span id="butt2"></span>
-<button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
 
+    <div id="imagebuttons" class="w3-row">
+<div class="w3-col m3 l2">
+<span id="seatingChartButton"></span> <span id="butt2"></span>
+  
+  <!--
+<button onclick="breakMinus(1)"><span id="breakButt">Break</span></button>
+  -->
+  
   <span id="timerButts">
-    <button  onclick="getPeriod()">Get Period</button>
+   <!-- <button  onclick="getPeriod()">Get Period</button> -->
     <button  onclick="startTimer()">Start</button>
   </span>
     <button onclick="stop()">Stop</button> 
-</p>
-<table>
-<tr>
-  <td><p id="seatingChart"></p></td>
-  <td>
-<p class="marg">
-<span id="timer">8:00</span>
-<span id="test" class="bellwork"></span>
+  <button onclick="reset()">Reset</button>
+</div>
+    <div id="imagebuttons.week" class="w3-col m3 l2">
+      <button onclick="setImageDate(1)">M</button> 
+      <button onclick="setImageDate(2)">Tu</button> 
+      <button onclick="setImageDate(3)">W</button> 
+      <button onclick="setImageDate(4)">Th</button> 
+      <button onclick="setImageDate(5)">F</button> 
+    </div> 
+    <div id="imagebuttons.spiral" class="w3-col m3 l2">
+      <button onclick="setImageDate(51)">SM</button> 
+      <button onclick="setImageDate(52)">STu</button> 
+      <button onclick="setImageDate(53)">SW</button> 
+      <button onclick="setImageDate(54)">STh</button> 
 
-</p>
+    </div>
+        <div id="imagebuttonsnav" class="w3-col m3 l2">
+      <button onclick="firstImage()"> |<< </button>    
+      <button onclick="previousImage()"> < </button> 
+      <button onclick="nextImage()"> > </button> 
+    </div>       
+  </div>  
+
+
+
+
     
   
 <!-- end timer -->
 <p id="demo"></p>
 <p id="couch"></p>
-</td></tr>
-<tr><td>
-<script src="scripts/processing.js"></script>
-<canvas id ="BB" width="675" height="400" data-processing-sources="scripts/draw.pde"></canvas><br><br>
-</td>
-<td>
-<p id="redCoins"></p>
-<p id="buttons"></p>
+<div class="w3-row">
+  <div id="lessonimages" class="w3-col m8 l9">
+    
+      <div id="seatingChart"></div>
+    <img src="images/marioEffect.png" class="img">
+<!-- blackboard
+<script src="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/processing.js"></script>
+<canvas id ="BB" width="675" height="400" data-processing-sources="https://raw.githubusercontent.com/mrgeyer/Mario-Classroom/master/scripts/draw.pde"></canvas><br><br>
+-->
+  </div>
+  
+  <div id="behavior" class="w3-col m4 l3">
+   
+    <div><span id="timer">8:00</span>
+      <span id="currentagenda" </span></div>
+ 
+    
+    
+    <p id="redCoins"></p>
+    <p id="buttons"></p>
+    <div id="com" class="champs">C: Voice Level 0</div>
+    <div id="help" class="champs">H: Raise hand</div>   
+    <div id="act" class="champs">A: Do your work</div>
+    <div id="movement" class="champs">M: Stay seated</div>
+    <div id="participation" class="champs">P: Finish work</div>
+  </div>  
+</div>
 
 
 
-
-</td></tr></table>
-<p>
+<div id="loadingzone">
   <input type="file" id="fileToLoad"> 
  <button onClick='loadSpreadSheet()'>Import</button> 
  <button onClick='start()'>Show Buttons</button> 
   <br \>
   
-<button class="CTbutton" type="button" 
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='none'">Hide</button>
 
-onclick="document.getElementById
-
-('inputTextToSave').style.display='none'">Hide</button>
-
-<button class="CTbutton" type="button" 
-
-onclick="document.getElementById
-
-('inputTextToSave').style.display='block'">Show</button>
+<button class="CTbutton" type="button" onclick="document.getElementById('inputTextToSave').style.display='block'">Show</button>
   
 <button onClick='exportData()'>Spreadsheet Log</button>
 <button class="CTbutton" onclick="saveTextAsFile()">Save Log</button>
@@ -69,9 +101,17 @@ onclick="document.getElementById
 <textarea id="inputTextToSave" 
 
 style="width:300px;height:100px"></textarea>
-
+</div>
+<div>
+<button class="CTbutton" type="button" onclick="resetLives(1)"> Reset Lives 1 </button>
+<button class="CTbutton" type="button" onclick="resetLives(2)"> Reset Lives 2 </button>
+<button class="CTbutton" type="button" onclick="resetLives(3)"> Reset Lives 3 </button>
+</div>
+<!-- end codepin code -->
  
   <script src="scripts/mario.js"></script>
-
-
+<div>
+<button onclick="loadWeek(1)"> Week 1 </button>
+<button onclick="loadWeek(2)"> Week 2 </button>
+</div>
 </body>
